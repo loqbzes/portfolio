@@ -112,6 +112,7 @@ nav { display: flex; gap: 28px; font-size: .76rem; color: var(--muted); }
 .case-overview section { padding: 24px; background: #fffefa; border: 1px solid var(--line); }
 .case-overview ul { margin: 0; padding-left: 1rem; }
 .case-overview li { margin-bottom: 12px; color: #353530; font-size: .91rem; line-height: 1.68; word-break: keep-all; }
+.case-single { margin: 0; color: #353530; font-size: .94rem; line-height: 1.8; word-break: keep-all; }
 .flow-list { border-top: 1px solid var(--line); }
 .flow-step { padding: 17px 0; display: grid; grid-template-columns: 46px 1fr; gap: 12px; border-bottom: 1px solid var(--line); }
 .flow-step span { padding-top: 2px; color: var(--muted); font-family: var(--font-geist-mono), monospace; font-size: .67rem; }
