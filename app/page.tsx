@@ -4,6 +4,13 @@ type Project = {
   work: string[];
   result?: string;
   stack: string[];
+  caseStudy?: {
+    problem: string;
+    ownership: string;
+    flow: string[];
+    guardrails: string[];
+    outcomes: string[];
+  };
 };
 
 const projects: Project[] = [
@@ -11,11 +18,32 @@ const projects: Project[] = [
     period: '2026.03 — 2026.06',
     title: '내부 CS·운영 지원 AI 에이전트 개발',
     work: [
-      '2025년 1월부터 축적된 CS·운영 질의응답 데이터를 자동 수집하고 저장하는 파이프라인 개발',
-      '운영 담당자의 질문에 서비스 정보와 관련 코드 위치·내용을 제공하는 질의응답 기능 구현',
-      '간단한 버그를 운영 담당자가 수정한 뒤 Pull Request로 전달할 수 있는 작업 흐름 구현',
+      'Slack 질의응답 수집, S3 적재, 에이전트용 API와 Slack 연동 기능 개발',
     ],
-    stack: ['Python', 'ECS', 'Claude Agent SDK', 'Terraform', 'S3', 'Slack', 'GitHub Actions'],
+    stack: ['Python', 'Slack Bolt', 'Claude Agent SDK', 'S3', 'ECS', 'GitHub'],
+    caseStudy: {
+      problem:
+        '세무 도메인과 내부 시스템의 복잡성 때문에 CS·운영 담당자의 학습 기간이 길었고, 대부분의 문의를 해결하려면 개발자가 관련 코드나 과거 응답을 직접 찾아야 했다. 시스템 문의가 아닌 실무 문의는 개발자가 답변하기 어려운 경우도 있었다.',
+      ownership:
+        '요구사항 정의, Slack 데이터 수집과 S3 적재, 에이전트용 API, Slack Bolt 연동, Claude Agent SDK 실행 로직과 코드 수정·PR 생성 기능까지 애플리케이션 전반을 단독으로 개발했다. 배포에는 기존 저장소의 인프라와 CI/CD 체계를 활용했다.',
+      flow: [
+        '개발진에 전달할 CS를 담당자가 선택하거나 스레드에서 AI를 멘션하면 Slack Bolt가 이벤트와 전체 스레드 내용을 수신',
+        'Claude Agent SDK가 에이전트를 실행하고, 질문에 따라 필요한 정보원을 도구로 자율 선택',
+        '일별·월별로 수집해 S3에 Markdown으로 저장한 과거 질의응답, 주요 소스 코드, 내부 시스템 조회 API를 사용',
+        '조회 결과를 같은 Slack 스레드에 바로 응답',
+        '간단한 버그는 소스 코드를 직접 수정하고 별도 브랜치와 Draft PR을 생성해 개발자가 바로 리뷰할 수 있도록 전달',
+      ],
+      guardrails: [
+        '기능 변경으로 판단되는 요청은 코드 수정을 거절',
+        '수정 범위가 100줄을 초과하면 작업을 거절',
+        '자동 반영하지 않고 Draft PR 생성까지만 수행하며 최종 리뷰는 개발자가 담당',
+      ],
+      outcomes: [
+        '개발자에게 직접 전달되던 CS 문의가 사실상 없어짐',
+        'CS·운영 담당자에게 긍정적인 사용 반응을 얻음',
+        '다른 사업부에서 Slack 기반 AI 에이전트를 개발하는 시작점이 됨',
+      ],
+    },
   },
   {
     period: '2024.06 — 2026.07',
@@ -194,12 +222,43 @@ export default function Home() {
                 <time>{project.period}</time>
               </div>
               <h3>{project.title}</h3>
-              <h4>수행 업무</h4>
-              <ul className="work-list">
-                {project.work.map((item) => <li key={item}>{item}</li>)}
-              </ul>
-              {project.result && (
-                <div className="result"><span>결과</span><strong>{project.result}</strong></div>
+              {project.caseStudy ? (
+                <div className="case-study">
+                  <section>
+                    <h4>문제</h4>
+                    <p>{project.caseStudy.problem}</p>
+                  </section>
+                  <section>
+                    <h4>담당 범위</h4>
+                    <p>{project.caseStudy.ownership}</p>
+                  </section>
+                  <section>
+                    <h4>처리 구조</h4>
+                    <ol>
+                      {project.caseStudy.flow.map((item) => <li key={item}>{item}</li>)}
+                    </ol>
+                  </section>
+                  <div className="case-columns">
+                    <section>
+                      <h4>안전장치</h4>
+                      <ul>{project.caseStudy.guardrails.map((item) => <li key={item}>{item}</li>)}</ul>
+                    </section>
+                    <section className="case-outcome">
+                      <h4>도입 결과</h4>
+                      <ul>{project.caseStudy.outcomes.map((item) => <li key={item}>{item}</li>)}</ul>
+                    </section>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <h4>수행 업무</h4>
+                  <ul className="work-list">
+                    {project.work.map((item) => <li key={item}>{item}</li>)}
+                  </ul>
+                  {project.result && (
+                    <div className="result"><span>결과</span><strong>{project.result}</strong></div>
+                  )}
+                </>
               )}
               <ul className="tags" aria-label={`${project.title} 기술 스택`}>
                 {project.stack.map((item) => <li key={item}>{item}</li>)}
