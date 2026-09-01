@@ -144,14 +144,13 @@ export default function Home() {
         <h1>이동호</h1>
         <div className="intro-grid">
           <p>
-            회계 업무 1년 10개월, Python 개발 9년 4개월을 경험했습니다.
-            혜움랩스에서 세무 자료 수집, 세무 신고, ERP 자동화, 웹 백엔드와
-            내부 운영용 AI 에이전트를 개발했습니다.
+            9년 4개월 동안 Python으로 세무 자료 수집, 세무 신고, ERP 자동화,
+            웹 백엔드와 내부 운영용 AI 에이전트를 개발했습니다.
           </p>
           <dl>
             <div><dt>지원 분야</dt><dd>Python Backend</dd></div>
             <div><dt>개발 경력</dt><dd>2017.04 — 2026.07</dd></div>
-            <div><dt>주요 도메인</dt><dd>회계 · 세무 · 업무 자동화</dd></div>
+            <div><dt>주요 도메인</dt><dd>세무 IT · 업무 자동화</dd></div>
           </dl>
         </div>
       </section>
@@ -173,18 +172,6 @@ export default function Home() {
               <li>ECS·Docker·Terraform을 사용한 Linux 기반 스크래핑 서비스 리뉴얼</li>
               <li>CloudWatch·Slack을 사용한 실행 상태, 로그, 오류 모니터링 구성</li>
               <li>CS·운영 데이터를 활용한 내부 지원 AI 에이전트 개발</li>
-            </ul>
-          </article>
-          <article>
-            <div className="employment-heading">
-              <div><h3>미디어윌네트웍스</h3><p>회계 담당 · 정규직</p></div>
-              <time>2013.08 — 2015.05</time>
-            </div>
-            <ul className="plain-list compact">
-              <li>회계 처리 및 월별 재무제표 결산</li>
-              <li>월별 재무보고서 작성</li>
-              <li>부가가치세 신고</li>
-              <li>근태 관리</li>
             </ul>
           </article>
         </div>
@@ -238,7 +225,7 @@ export default function Home() {
         </div>
         <div className="education-content">
           <div><h3>세종대학교 경영학과</h3><time>2006.03 — 2013.06</time></div>
-          <p>졸업 · 중급회계, 관리회계, 세법 이수</p>
+          <p>졸업</p>
         </div>
       </section>
 
