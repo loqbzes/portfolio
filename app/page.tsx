@@ -5,8 +5,8 @@ type Project = {
   result?: string;
   stack: string[];
   caseStudy?: {
-    problem: string;
-    ownership: string;
+    problem: string[];
+    ownership: string[];
     flow: string[];
     guardrails: string[];
     outcomes: string[];
@@ -22,10 +22,17 @@ const projects: Project[] = [
     ],
     stack: ['Python', 'Slack Bolt', 'Claude Agent SDK', 'S3', 'ECS', 'GitHub'],
     caseStudy: {
-      problem:
-        '세무 도메인과 내부 시스템의 복잡성 때문에 CS·운영 담당자의 학습 기간이 길었고, 대부분의 문의를 해결하려면 개발자가 관련 코드나 과거 응답을 직접 찾아야 했다. 시스템 문의가 아닌 실무 문의는 개발자가 답변하기 어려운 경우도 있었다.',
-      ownership:
-        '요구사항 정의, Slack 데이터 수집과 S3 적재, 에이전트용 API, Slack Bolt 연동, Claude Agent SDK 실행 로직과 코드 수정·PR 생성 기능까지 애플리케이션 전반을 단독으로 개발했다. 배포에는 기존 저장소의 인프라와 CI/CD 체계를 활용했다.',
+      problem: [
+        '복잡한 세무 도메인과 내부 시스템 때문에 CS·운영 담당자의 학습 기간이 길었음',
+        '문의마다 개발자가 관련 코드와 과거 응답 기록을 직접 찾아야 했음',
+        '실무 판단이 필요한 문의는 개발자가 답변하기 어려운 경우도 있었음',
+      ],
+      ownership: [
+        '요구사항 정의부터 애플리케이션 개발까지 전 과정 단독 담당',
+        'Slack 데이터 수집·S3 적재, 에이전트용 API, Slack Bolt 연동 구현',
+        'Claude Agent SDK 실행 로직과 코드 수정·Draft PR 생성 기능 구현',
+        '배포에는 기존 저장소의 인프라와 CI/CD 체계를 활용',
+      ],
       flow: [
         '개발진에 전달할 CS를 담당자가 선택하거나 스레드에서 AI를 멘션하면 Slack Bolt가 이벤트와 전체 스레드 내용을 수신',
         'Claude Agent SDK가 에이전트를 실행하고, 질문에 따라 필요한 정보원을 도구로 자율 선택',
@@ -224,19 +231,26 @@ export default function Home() {
               <h3>{project.title}</h3>
               {project.caseStudy ? (
                 <div className="case-study">
-                  <section>
-                    <h4>문제</h4>
-                    <p>{project.caseStudy.problem}</p>
-                  </section>
-                  <section>
-                    <h4>담당 범위</h4>
-                    <p>{project.caseStudy.ownership}</p>
-                  </section>
+                  <div className="case-overview">
+                    <section>
+                      <h4>기존 문제</h4>
+                      <ul>{project.caseStudy.problem.map((item) => <li key={item}>{item}</li>)}</ul>
+                    </section>
+                    <section>
+                      <h4>담당 범위</h4>
+                      <ul>{project.caseStudy.ownership.map((item) => <li key={item}>{item}</li>)}</ul>
+                    </section>
+                  </div>
                   <section>
                     <h4>처리 구조</h4>
-                    <ol>
-                      {project.caseStudy.flow.map((item) => <li key={item}>{item}</li>)}
-                    </ol>
+                    <div className="flow-list">
+                      {project.caseStudy.flow.map((item, index) => (
+                        <div className="flow-step" key={item}>
+                          <span>{String(index + 1).padStart(2, '0')}</span>
+                          <p>{item}</p>
+                        </div>
+                      ))}
+                    </div>
                   </section>
                   <div className="case-columns">
                     <section>
