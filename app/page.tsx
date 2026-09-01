@@ -144,7 +144,7 @@ export default function Home() {
         <h1>PORTFOLIO</h1>
         <div className="intro-grid">
           <p>
-            9년 4개월 동안 Python으로 웹 백엔드, 비동기 작업 시스템과 데이터 수집
+            9년 동안 Python으로 웹 백엔드, 비동기 작업 시스템과 데이터 수집
             서비스를 개발했습니다. Django·Flask API부터 Celery 작업 처리, AWS 인프라,
             세무 신고·ERP 연동과 내부 운영용 AI 에이전트까지 담당했습니다.
           </p>
