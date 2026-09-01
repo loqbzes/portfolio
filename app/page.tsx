@@ -118,12 +118,12 @@ const projects: Project[] = [
 ];
 
 const skills = [
-  ['Backend', 'Python, Django, Flask, ORM, PostgreSQL'],
-  ['Async', 'Celery, Redis, SQS'],
-  ['AWS', 'ECS, EC2, Lambda, S3, RDS, DynamoDB, CloudWatch'],
+  ['Backend', 'Python, Django, Flask, ORM, REST API'],
+  ['Data', 'PostgreSQL, RDS, DynamoDB, S3, Data Modeling'],
+  ['Async / Messaging', 'Celery, Redis, SQS'],
+  ['AWS', 'ECS, EC2, Lambda, CloudWatch'],
   ['Infra / CI', 'Docker, Terraform, GitHub Actions, Linux, Windows Server'],
-  ['Automation', 'Web Scraping, Windows UI Automation, ERP RPA, C++ DLL API'],
-  ['Integration', 'Slack, KakaoTalk, Google API, AI Agent'],
+  ['Integration', 'Web Scraping, C++ DLL API, Google API, Slack, KakaoTalk, AI Agent'],
 ];
 
 export default function Home() {
@@ -144,13 +144,14 @@ export default function Home() {
         <h1>PORTFOLIO</h1>
         <div className="intro-grid">
           <p>
-            9년 4개월 동안 Python으로 세무 자료 수집, 세무 신고, ERP 자동화,
-            웹 백엔드와 내부 운영용 AI 에이전트를 개발했습니다.
+            9년 4개월 동안 Python으로 웹 백엔드, 비동기 작업 시스템과 데이터 수집
+            서비스를 개발했습니다. Django·Flask API부터 Celery 작업 처리, AWS 인프라,
+            세무 신고·ERP 연동과 내부 운영용 AI 에이전트까지 담당했습니다.
           </p>
           <dl>
             <div><dt>지원 분야</dt><dd>Python Backend</dd></div>
             <div><dt>개발 경력</dt><dd>2017.04 — 2026.07</dd></div>
-            <div><dt>주요 도메인</dt><dd>세무 IT · 업무 자동화</dd></div>
+            <div><dt>주요 분야</dt><dd>웹 백엔드 · 비동기 처리 · 데이터 수집</dd></div>
           </dl>
         </div>
       </section>
@@ -167,8 +168,10 @@ export default function Home() {
               <time>2017.04 — 2026.07</time>
             </div>
             <ul className="plain-list">
-              <li>Celery 기반의 스크래핑·세무 신고·ERP 자동화 작업 개발 및 장기 운영</li>
-              <li>Django·Flask 웹 백엔드와 AWS Lambda 서버리스 애플리케이션 개발</li>
+              <li>Django·Flask 기반 웹 백엔드, 데이터 모델과 API 개발</li>
+              <li>Celery·Redis 기반 비동기 작업 시스템 개발 및 장기 운영</li>
+              <li>PostgreSQL·DynamoDB·RDS를 사용한 수집 데이터 저장 구조 설계·변경</li>
+              <li>AWS Lambda 서버리스 애플리케이션과 외부 서비스 연동 기능 개발</li>
               <li>ECS·Docker·Terraform을 사용한 Linux 기반 스크래핑 서비스 리뉴얼</li>
               <li>CloudWatch·Slack을 사용한 실행 상태, 로그, 오류 모니터링 구성</li>
               <li>CS·운영 데이터를 활용한 내부 지원 AI 에이전트 개발</li>
