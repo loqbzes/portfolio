@@ -8,7 +8,8 @@ type Project = {
     problem: string[];
     ownership: string[];
     flow: string[];
-    guardrails: string[];
+    guardrails?: string[];
+    operations?: string[];
     outcomes: string[];
   };
 };
@@ -53,13 +54,37 @@ const projects: Project[] = [
     period: '2024.06 — 2026.07',
     title: '세무 정보 스크래핑 서비스 리뉴얼',
     work: [
-      '신규 서비스에 대응할 수 있도록 기존 스크래핑 구조를 경량화하고 수평 확장이 가능한 형태로 재구성',
-      '실행 환경을 Windows에서 Ubuntu 컨테이너로 전환하고 ECS 오토 스케일링 구성',
-      'Terraform으로 인프라 정의를 코드화하고 GitHub Actions 배포 파이프라인 구성',
-      '세무 신고 일정에 맞춰 기존 기능을 신규 서비스로 순차 이전하고 스크래핑 태스크를 지속 개발',
+      'Windows 기반 스크래핑 서비스를 Linux·ECS 기반으로 리뉴얼',
     ],
-    result: '부가세 자료 스크래핑 소요 시간을 약 4시간에서 1시간 30분으로 단축',
-    stack: ['Python', 'ECS', 'Docker', 'Terraform', 'GitHub Actions'],
+    stack: ['Python', 'Celery', 'ElastiCache for Redis', 'ECS', 'ECR', 'Docker', 'Terraform', 'GitHub Actions', 'CloudWatch', 'Sentry'],
+    caseStudy: {
+      problem: [
+        'Windows 기반 실행 환경으로 인한 오토 스케일링 제약',
+        '긴 개별 스크래핑 처리 시간과 제한된 동시 처리량',
+        '작업을 여러 구간으로 나누는 우회 방식을 적용해도 추가 처리가 불가능한 용량 한계',
+      ],
+      ownership: [
+        '저장소 생성부터 Linux 스크래핑 코드, Docker 이미지, Celery·Redis 구성, ECS·오토 스케일링, Terraform과 CI/CD까지 전체를 직접 구축했습니다.',
+      ],
+      flow: [
+        '스크래핑 코드를 Linux 환경에서 실행하도록 변경해 개별 작업의 처리 시간을 단축',
+        '스크래핑 요청을 Celery 태스크로 발행하고 ECS 워커 컨테이너에서 실행',
+        'ElastiCache for Redis를 Celery 브로커로 사용하고 Celery Result Backend에 작업 결과와 상태를 저장',
+        'ECS 워커의 CPU 사용량을 기준으로 컨테이너 수를 자동 조정해 동시 처리량을 확대',
+        'staging 브랜치 대상 PR에서 테스트를 실행하고, GitHub Actions에서 Docker 이미지 빌드·ECR 업로드·ECS 배포를 수행',
+      ],
+      operations: [
+        'Celery Flower로 워커와 태스크 상태 확인',
+        'CloudWatch Logs로 실행 로그 수집',
+        'Sentry로 예외 수집과 오류 상황 추적',
+        '실패한 작업은 운영자가 수동 실행하거나 사용자가 직접 재시도',
+      ],
+      outcomes: [
+        'Linux 전환과 동시 처리량 확대를 함께 적용해 부가세 자료 스크래핑 시간을 약 4시간에서 1시간 30분으로 단축',
+        '세무 일정에 맞춰 약 1년간 기능을 단계적으로 이전',
+        'Windows가 반드시 필요한 일부 작업을 제외한 모든 스크래핑을 신규 환경으로 전환',
+      ],
+    },
   },
   {
     period: '2023.01 — 2026.07',
@@ -246,7 +271,7 @@ export default function Home() {
                           <span>{String(index + 1).padStart(2, '0')}</span>
                           <div>
                             <p>{item}</p>
-                            {index === project.caseStudy!.flow.length - 1 && (
+                            {index === project.caseStudy!.flow.length - 1 && project.caseStudy!.guardrails && (
                               <div className="flow-guardrails">
                                 <strong>코드 수정 조건</strong>
                                 <ul>{project.caseStudy!.guardrails.map((guardrail) => <li key={guardrail}>{guardrail}</li>)}</ul>
@@ -257,6 +282,12 @@ export default function Home() {
                       ))}
                     </div>
                   </section>
+                  {project.caseStudy.operations && (
+                    <section className="case-operations">
+                      <h4>운영 및 모니터링</h4>
+                      <ul>{project.caseStudy.operations.map((item) => <li key={item}>{item}</li>)}</ul>
+                    </section>
+                  )}
                   <section className="case-outcome">
                     <h4>도입 결과</h4>
                     <ul>{project.caseStudy.outcomes.map((item) => <li key={item}>{item}</li>)}</ul>

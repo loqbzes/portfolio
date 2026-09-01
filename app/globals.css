@@ -119,8 +119,10 @@ nav { display: flex; gap: 28px; font-size: .76rem; color: var(--muted); }
 .flow-step p { margin: 0; color: #353530; font-size: .94rem; line-height: 1.68; word-break: keep-all; }
 .flow-guardrails { margin-top: 16px; padding: 16px 18px; background: var(--panel); }
 .flow-guardrails strong { display: block; margin-bottom: 9px; font-size: .7rem; }
-.flow-guardrails ul, .case-outcome ul { margin: 0; padding-left: 1rem; }
+.flow-guardrails ul, .case-operations ul, .case-outcome ul { margin: 0; padding-left: 1rem; }
 .flow-guardrails li { margin-bottom: 7px; color: #4a4a44; font-size: .82rem; line-height: 1.6; }
+.case-operations { padding: 24px !important; background: var(--panel); border-top: 0 !important; }
+.case-operations li { margin-bottom: 9px; color: #353530; font-size: .9rem; line-height: 1.65; }
 .case-outcome { padding: 24px !important; background: var(--accent); border-top: 0 !important; }
 .case-outcome li { margin-bottom: 10px; color: #252520; font-size: .91rem; line-height: 1.65; word-break: keep-all; }
 .result { margin-top: 25px; padding: 18px 20px; display: grid; grid-template-columns: 70px 1fr; gap: 18px; background: var(--accent); }
