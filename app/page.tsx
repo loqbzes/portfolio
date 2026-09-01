@@ -68,9 +68,9 @@ const projects: Project[] = [
       ],
       flow: [
         '스크래핑 코드를 Linux 환경에서 실행하도록 변경해 개별 작업의 처리 시간을 단축',
-        '스크래핑 요청을 Celery 태스크로 발행하고 ECS 워커 컨테이너에서 실행',
+        '스크래핑 요청을 Celery 태스크로 발행하고 ECS Task에서 실행되는 Celery 워커가 처리',
         'ElastiCache for Redis를 Celery 브로커로 사용하고 Celery Result Backend에 작업 결과와 상태를 저장',
-        'ECS 워커의 CPU 사용량을 기준으로 컨테이너 수를 자동 조정해 동시 처리량을 확대',
+        'ECS Task의 CPU 사용량을 기준으로 실행 Task 수를 자동 조정해 동시 처리량을 확대',
         'staging 브랜치 대상 PR에서 테스트를 실행하고, GitHub Actions에서 Docker 이미지 빌드·ECR 업로드·ECS 배포를 수행',
       ],
       operations: [
