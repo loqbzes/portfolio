@@ -14,12 +14,12 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
-  title: '이동호 | Python Backend Engineer',
+  title: '이동호 | Python Backend Developer',
   description:
-    '회계·세무 도메인 경험을 바탕으로 자동화, 스크래핑, 백엔드 시스템을 만드는 Python 개발자 이동호의 포트폴리오입니다.',
+    'Python, Django, Celery, AWS를 사용한 이동호의 경력과 프로젝트 포트폴리오입니다.',
   openGraph: {
     title: '이동호 | Python Backend Engineer',
-    description: '복잡한 실무를 이해하고, 작동하는 자동화로 바꿉니다.',
+    description: 'Python 백엔드 개발 경력 및 프로젝트',
     type: 'website',
     locale: 'ko_KR',
     images: [{ url: '/og.png', width: 1792, height: 938, alt: '이동호 Python Backend Engineer' }],
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: '이동호 | Python Backend Engineer',
-    description: '복잡한 실무를 이해하고, 작동하는 자동화로 바꿉니다.',
+    description: 'Python 백엔드 개발 경력 및 프로젝트',
     images: ['/og.png'],
   },
 };

@@ -1,302 +1,260 @@
 type Project = {
   period: string;
   title: string;
-  summary: string;
+  work: string[];
+  result?: string;
   stack: string[];
-  accent?: string;
 };
 
 const projects: Project[] = [
   {
     period: '2026.03 — 2026.06',
-    title: '내부 CS·운영 지원 AI 에이전트',
-    summary:
-      '질의응답 데이터를 자동 수집·적재하고 서비스 및 코드 정보를 답변하는 에이전트를 개발했습니다. 간단한 버그는 담당자가 직접 수정해 PR로 전달할 수 있는 흐름까지 구현했습니다.',
-    stack: ['Python', 'ECS', 'Claude Agent SDK', 'Terraform', 'S3', 'Slack'],
-    accent: 'AI / AGENT',
+    title: '내부 CS·운영 지원 AI 에이전트 개발',
+    work: [
+      '2025년 1월부터 축적된 CS·운영 질의응답 데이터를 자동 수집하고 저장하는 파이프라인 개발',
+      '운영 담당자의 질문에 서비스 정보와 관련 코드 위치·내용을 제공하는 질의응답 기능 구현',
+      '간단한 버그를 운영 담당자가 수정한 뒤 Pull Request로 전달할 수 있는 작업 흐름 구현',
+    ],
+    stack: ['Python', 'ECS', 'Claude Agent SDK', 'Terraform', 'S3', 'Slack', 'GitHub Actions'],
   },
   {
     period: '2024.06 — 2026.07',
     title: '세무 정보 스크래핑 서비스 리뉴얼',
-    summary:
-      'Windows 기반 서비스를 Ubuntu·ECS 환경으로 전환하고 오토 스케일링과 IaC를 도입했습니다. 부가세 자료 스크래핑 시간을 약 4시간에서 1시간 30분으로 줄였습니다.',
+    work: [
+      '신규 서비스에 대응할 수 있도록 기존 스크래핑 구조를 경량화하고 수평 확장이 가능한 형태로 재구성',
+      '실행 환경을 Windows에서 Ubuntu 컨테이너로 전환하고 ECS 오토 스케일링 구성',
+      'Terraform으로 인프라 정의를 코드화하고 GitHub Actions 배포 파이프라인 구성',
+      '세무 신고 일정에 맞춰 기존 기능을 신규 서비스로 순차 이전하고 스크래핑 태스크를 지속 개발',
+    ],
+    result: '부가세 자료 스크래핑 소요 시간을 약 4시간에서 1시간 30분으로 단축',
     stack: ['Python', 'ECS', 'Docker', 'Terraform', 'GitHub Actions'],
-    accent: '62.5% FASTER',
   },
   {
     period: '2023.01 — 2026.07',
-    title: '세무사랑 자동화 봇',
-    summary:
-      '세무사랑과 협업해 C++ DLL API 호출과 ERP RPA를 결합한 자동화 태스크를 개발했습니다. Celery 기반으로 Windows 자동화 작업을 안정적으로 분산 실행했습니다.',
-    stack: ['CPython', 'Celery', 'Windows Server', 'Redis', 'EC2'],
-    accent: 'ERP / RPA',
+    title: '세무사랑 자동화 봇 개발',
+    work: [
+      '세무사랑 측이 제공한 C++ DLL API를 CPython에서 호출하는 연동 모듈 개발',
+      'DLL API로 처리할 수 없는 업무는 Windows UI 자동화를 결합해 ERP 자동화 태스크로 구현',
+      'Celery와 Redis를 이용해 Windows 서버에서 자동화 작업을 비동기로 실행',
+    ],
+    stack: ['CPython', 'C++ DLL API', 'Celery', 'Redis', 'EC2 Windows Server', 'GitHub Actions'],
   },
   {
     period: '2025.08',
-    title: '홈택스·4대보험 수임사 스크래핑 백엔드',
-    summary:
-      '저장소를 DynamoDB에서 PostgreSQL로 전환했습니다. NoSQL 데이터를 RDB 구조로 재모델링하고 API를 구성해 비용을 절감하고 조회 편의성을 높였습니다.',
+    title: '홈택스·4대보험 수임사 스크래핑 웹 백엔드',
+    work: [
+      '수임사 스크래핑 데이터 저장소를 DynamoDB에서 PostgreSQL로 변경',
+      'NoSQL 형태의 기존 데이터를 관계형 구조로 저장하기 위한 모델 설계',
+      '저장·조회에 필요한 Django API 구성',
+    ],
+    result: 'DynamoDB 사용 비용을 줄이고 관계형 조회와 운영 쿼리의 편의성을 개선',
     stack: ['Python', 'Django', 'PostgreSQL', 'DynamoDB'],
   },
   {
     period: '2017.04 — 2023.07',
-    title: '더존 SmartA 자동화 봇',
-    summary:
-      '재무정보 추출, 급여 입력, 세무 증명서 PDF 출력 등 다수의 ERP 자동화 스크립트를 개발·운영했습니다. Celery와 Redis로 작업을 비동기화하고 EC2 기반 서버·클라이언트를 관리했습니다.',
-    stack: ['Python', 'Celery', 'Redis', 'Windows Server', 'EC2', 'S3'],
+    title: '더존 SmartA ERP 자동화 봇 개발',
+    work: [
+      '재무제표 등 재무정보 추출, 급여 데이터 입력, 세무 증명서 PDF 출력 자동화 구현',
+      'SmartA 자체 스크래핑을 포함한 다수의 Windows 자동화 스크립트 개발·유지보수',
+      'Celery 기반 비동기 작업으로 자동화 태스크를 실행하고 Redis로 큐 상태 관리',
+      'EC2 Windows Server에서 ERP 서버와 자동화 클라이언트를 운영하고 실행 성능을 최적화',
+      'CloudWatch·Slack으로 로그와 오류를 수집하고 운영 알림 구성',
+    ],
+    stack: ['Python', 'Celery', 'Redis', 'EC2 Windows Server', 'S3', 'CloudWatch', 'Slack'],
   },
   {
     period: '2020.06 — 2024.05',
-    title: '세무 스크래핑·신고 서비스 개선',
-    summary:
-      '법인세·부가세·원천세·종소세, 4대보험 신고와 각종 증명서 출력을 다루는 서비스를 인수해 개선했습니다. 분산된 프로젝트를 통합하고 태스크 추상화, 정보 모델링, 로깅과 진행 상태 API를 정비했습니다.',
-    stack: ['Python', 'Celery', 'DynamoDB', 'CloudWatch', 'Redis', 'S3'],
+    title: '세무 정보 스크래핑·신고 서비스 개선',
+    work: [
+      '법인세·부가세·원천세·종합소득세의 국세·지방세 신고와 4대보험 신고 기능 유지보수',
+      '홈택스·고용보험 자료, 세무신고 도움자료, PG사 데이터 스크래핑과 증명서 출력 기능 개발',
+      '여러 마이크로서비스로 흩어진 프로젝트와 중복 태스크를 하나의 프로젝트로 통합',
+      '추상 클래스를 도입해 공통 실행 흐름과 세목별 고유 로직을 분리하고 신고·스크래핑 정보를 모델링',
+      '로깅을 LogDNA에서 CloudWatch로 이전하고 작업 진행 과정을 DB에 기록하도록 개선',
+      '운영자가 작업 상태를 확인할 수 있도록 API 문서를 추가',
+    ],
+    stack: ['Python', 'Celery', 'EC2', 'S3', 'DynamoDB', 'CloudWatch', 'Redis', 'Slack'],
   },
   {
     period: '2019.04 — 2023.07',
-    title: '슬랙·카카오톡 연동 상담 서비스',
-    summary:
-      '고객의 카카오톡과 담당자의 Slack을 연결하는 서비스를 유지보수·개선했습니다. 오류 알림, 근무 외 자동응답, 고객 정보 연동 UI를 추가하고 알림 기능을 Django 백엔드로 이전했습니다.',
-    stack: ['Python', 'Flask', 'Django', 'Celery', 'Redis', 'Slack'],
+    title: 'Slack·카카오톡 연동 상담 서비스 개선',
+    work: [
+      '고객의 카카오톡 메시지와 담당 직원의 Slack을 연결하는 상담 서비스 인수·유지보수',
+      '로깅과 오류 알림을 추가하고 휴일·근무 시간 외 자동응답 기능 구현',
+      'Slack Bot에서 카카오톡 고객과 백엔드 고객 정보를 연결해 확인하는 UI 개발',
+      '기존 코드를 분석·리팩터링하고 카카오톡·메일·Slack 알림 기능을 Django 백엔드로 이전',
+    ],
+    stack: ['Python', 'Flask', 'Django', 'Celery', 'EC2', 'Redis', 'Slack'],
   },
   {
     period: '2020.06 — 2022.10',
-    title: '일별 금융정보 스크래핑',
-    summary:
-      '홈택스, 은행, 카드사, 여신금융협회의 금융정보를 매일 수집하는 시스템을 유지보수했습니다. 다양한 외부 데이터 소스의 수집 작업을 안정적으로 운영했습니다.',
-    stack: ['Python', 'Celery', 'RDS', 'DynamoDB', 'Redis', 'EC2'],
+    title: '일별 금융정보 스크래핑 유지보수',
+    work: [
+      '고객사의 일별 금융정보 수집 작업과 장애 대응',
+      '홈택스, 은행, 카드사, 여신금융협회 데이터를 외부 스크래핑 서비스를 통해 수집·저장',
+      'Celery 태스크와 Redis 큐, RDS·DynamoDB 저장소 운영',
+    ],
+    stack: ['Python', 'Celery', 'EC2 Windows Server', 'RDS', 'DynamoDB', 'Redis'],
   },
   {
     period: '2022.04 — 2022.07',
-    title: 'Google Drive 동기화 리뉴얼',
-    summary:
-      '파일 생성·이동·삭제 이벤트에 맞춰 데이터베이스를 동기화하고, 회사 및 담당자 변경에 따른 권한·연결 상태를 갱신하는 기능을 담당했습니다.',
+    title: 'Google Drive 동기화 기능 리뉴얼',
+    work: [
+      'Google Drive의 파일 생성·이동·삭제 이벤트에 따라 내부 데이터베이스를 갱신하는 기능 개발',
+      '회사 또는 담당자 변경 시 Drive 파일과 내부 고객 정보의 연결을 동기화하는 기능 담당',
+    ],
     stack: ['Python', 'Django', 'Google API', 'RDS'],
   },
   {
     period: '2019.08 — 2019.10',
-    title: '세금계산서·NICE·알림톡 서버리스 앱',
-    summary:
-      '팝빌 회원가입과 세금계산서 발행, NICE 평가정보 수집, 카카오톡 알림톡 발송을 각각 독립적인 서버리스 애플리케이션으로 개발했습니다.',
+    title: '세금계산서·NICE·알림톡 서버리스 앱 개발',
+    work: [
+      '팝빌 회원가입과 세금계산서 발행 기능 개발',
+      'NICE 평가정보 수집 기능 개발',
+      '카카오톡 알림톡 발송 기능을 Lambda 기반 서버리스 애플리케이션으로 구현',
+    ],
     stack: ['Python', 'AWS Lambda', 'AWS SAM', 'SQS'],
   },
 ];
 
-const skillGroups = [
-  {
-    number: '01',
-    title: 'Backend',
-    items: ['Python', 'Django', 'Flask', 'ORM', 'PostgreSQL'],
-  },
-  {
-    number: '02',
-    title: 'Async & Automation',
-    items: ['Celery', 'Redis', 'Windows Automation', 'Scraping', 'AI Agent'],
-  },
-  {
-    number: '03',
-    title: 'Cloud & Delivery',
-    items: ['AWS', 'ECS', 'EC2', 'Lambda', 'Docker', 'Terraform', 'GitHub Actions'],
-  },
+const skills = [
+  ['Backend', 'Python, Django, Flask, ORM, PostgreSQL'],
+  ['Async', 'Celery, Redis, SQS'],
+  ['AWS', 'ECS, EC2, Lambda, S3, RDS, DynamoDB, CloudWatch'],
+  ['Infra / CI', 'Docker, Terraform, GitHub Actions, Linux, Windows Server'],
+  ['Automation', 'Web Scraping, Windows UI Automation, ERP RPA, C++ DLL API'],
+  ['Integration', 'Slack, KakaoTalk, Google API, AI Agent'],
 ];
 
 export default function Home() {
   return (
-    <main>
-      <header className="site-header">
-        <a className="wordmark" href="#top" aria-label="이동호 포트폴리오 홈">
-          DONGHO <span>LEE</span>
-        </a>
+    <main id="top">
+      <header className="topbar">
+        <a href="#top" className="name">이동호</a>
         <nav aria-label="주요 메뉴">
-          <a href="#about">소개</a>
-          <a href="#expertise">역량</a>
-          <a href="#work">프로젝트</a>
-          <a className="nav-contact" href="#contact">연락하기</a>
+          <a href="#summary">경력 요약</a>
+          <a href="#projects">프로젝트</a>
+          <a href="#skills">기술</a>
+          <a href="#contact">연락처</a>
         </nav>
       </header>
 
-      <section className="hero" id="top">
-        <div className="hero-copy">
-          <p className="eyebrow"><span aria-hidden="true" /> Python Backend Engineer</p>
-          <h1>
-            복잡한 실무를 이해하고,
-            <br />
-            <em>작동하는 자동화</em>로 바꿉니다.
-          </h1>
-          <p className="hero-description">
-            회계 실무에서 출발해 9년간 세무 IT 서비스를 만들어 온 개발자 이동호입니다.
-            스크래핑, ERP 자동화, 비동기 시스템과 AI 에이전트로 반복 업무를 제품으로 전환합니다.
-          </p>
-          <div className="hero-actions">
-            <a className="button button-primary" href="#work">
-              모든 프로젝트 보기 <span aria-hidden="true">↘</span>
-            </a>
-            <a className="text-link" href="mailto:loqbzes@gmail.com">
-              이메일 보내기 <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
-
-        <aside className="hero-card" aria-label="경력 요약">
-          <div className="card-topline">
-            <span>PROFILE / 2026</span>
-            <span className="availability">OPEN TO OPPORTUNITIES</span>
-          </div>
-          <div className="monogram" aria-hidden="true"><span>DL</span></div>
-          <div className="card-summary">
-            <p>FOCUS</p>
-            <strong>Python Backend</strong>
-            <span>Automation · Data Collection · AI Agent</span>
-          </div>
-        </aside>
-      </section>
-
-      <section className="stats" aria-label="경력 주요 수치">
-        <article><strong>11<span>년+</span></strong><p>회계 실무를 포함한<br />전체 경력</p></article>
-        <article><strong>9<span>년+</span></strong><p>Python 기반<br />개발 경력</p></article>
-        <article><strong>10</strong><p>설계·개선·운영한<br />주요 프로젝트</p></article>
-        <article><strong>62.5<span>%</span></strong><p>대표 스크래핑<br />처리 시간 단축</p></article>
-      </section>
-
-      <section className="about section-shell" id="about">
-        <div className="section-heading">
-          <p className="section-label">ABOUT / DOMAIN × ENGINEERING</p>
-          <h2>업무의 언어와<br />기술의 언어를 연결합니다.</h2>
-        </div>
-        <div className="about-body">
-          <p className="lead">
-            경영학과에서 회계와 세법을 공부하고 실제 회계 업무를 경험한 뒤,
-            반복되는 업무를 더 나은 방식으로 해결하고 싶어 개발자가 되었습니다.
-          </p>
+      <section className="intro page-width">
+        <p className="role">PYTHON BACKEND DEVELOPER</p>
+        <h1>이동호</h1>
+        <div className="intro-grid">
           <p>
-            혜움랩스에서 세무 데이터를 수집하는 스크래핑부터 ERP 입력 자동화, 세무 신고,
-            상담 채널, 서버리스 마이크로서비스, 웹 백엔드와 AI 에이전트까지 폭넓게 개발했습니다.
-            사람이 직접 해야 했던 복잡한 절차를 분석하고, 실패를 추적할 수 있으며,
-            운영자가 믿고 사용할 수 있는 시스템으로 만드는 데 강점이 있습니다.
+            회계 업무 1년 10개월, Python 개발 9년 4개월을 경험했습니다.
+            혜움랩스에서 세무 자료 수집, 세무 신고, ERP 자동화, 웹 백엔드와
+            내부 운영용 AI 에이전트를 개발했습니다.
           </p>
-          <div className="career-line">
-            <article>
-              <span>2013 — 2015</span>
-              <strong>미디어윌네트웍스</strong>
-              <p>회계 담당 · 결산, 재무보고, 부가세 신고</p>
-            </article>
-            <article>
-              <span>2017 — 2026</span>
-              <strong>혜움랩스</strong>
-              <p>Python 개발 · Backend, Automation, AI</p>
-            </article>
-          </div>
+          <dl>
+            <div><dt>지원 분야</dt><dd>Python Backend</dd></div>
+            <div><dt>개발 경력</dt><dd>2017.04 — 2026.07</dd></div>
+            <div><dt>주요 도메인</dt><dd>회계 · 세무 · 업무 자동화</dd></div>
+          </dl>
         </div>
       </section>
 
-      <section className="expertise" id="expertise">
-        <div className="section-shell">
-          <div className="expertise-intro">
-            <p className="section-label light">EXPERTISE</p>
-            <h2>오래 운영되는<br />백엔드를 만듭니다.</h2>
-            <p>도메인 모델링부터 비동기 실행, 인프라와 운영 가시성까지 전체 흐름을 함께 봅니다.</p>
-          </div>
-          <div className="skill-groups">
-            {skillGroups.map((group) => (
-              <article key={group.number}>
-                <span className="skill-number">{group.number}</span>
-                <div>
-                  <h3>{group.title}</h3>
-                  <ul>
-                    {group.items.map((item) => <li key={item}>{item}</li>)}
-                  </ul>
-                </div>
-              </article>
-            ))}
-          </div>
+      <section className="summary page-width" id="summary">
+        <div className="section-title">
+          <span>01</span>
+          <h2>경력 요약</h2>
         </div>
-      </section>
-
-      <section className="impact section-shell" aria-labelledby="impact-title">
-        <div className="section-heading">
-          <p className="section-label">SELECTED IMPACT</p>
-          <h2 id="impact-title">규모보다 중요한 것은<br />실제로 달라진 결과입니다.</h2>
-        </div>
-        <div className="impact-grid">
-          <article className="impact-card impact-primary">
-            <span>01 / PERFORMANCE</span>
-            <strong>4h</strong>
-            <i aria-hidden="true">→</i>
-            <strong>1.5h</strong>
-            <p>ECS 오토 스케일링과 서비스 리뉴얼로 부가세 자료 수집 시간을 단축했습니다.</p>
+        <div className="summary-content">
+          <article>
+            <div className="employment-heading">
+              <div><h3>혜움랩스</h3><p>Python 개발자 · 정규직</p></div>
+              <time>2017.04 — 2026.07</time>
+            </div>
+            <ul className="plain-list">
+              <li>Celery 기반의 스크래핑·세무 신고·ERP 자동화 작업 개발 및 장기 운영</li>
+              <li>Django·Flask 웹 백엔드와 AWS Lambda 서버리스 애플리케이션 개발</li>
+              <li>ECS·Docker·Terraform을 사용한 Linux 기반 스크래핑 서비스 리뉴얼</li>
+              <li>CloudWatch·Slack을 사용한 실행 상태, 로그, 오류 모니터링 구성</li>
+              <li>CS·운영 데이터를 활용한 내부 지원 AI 에이전트 개발</li>
+            </ul>
           </article>
-          <article className="impact-card">
-            <span>02 / OPERABILITY</span>
-            <h3>흩어진 작업을<br />하나의 구조로</h3>
-            <p>다수의 마이크로서비스와 태스크를 통합하고 추상화·모델링·로깅을 정비했습니다.</p>
-          </article>
-          <article className="impact-card">
-            <span>03 / NEXT INTERFACE</span>
-            <h3>질문에서<br />수정 PR까지</h3>
-            <p>운영 지식과 코드 정보를 연결해 답변하고 간단한 버그 수정까지 지원하는 AI 에이전트를 개발했습니다.</p>
+          <article>
+            <div className="employment-heading">
+              <div><h3>미디어윌네트웍스</h3><p>회계 담당 · 정규직</p></div>
+              <time>2013.08 — 2015.05</time>
+            </div>
+            <ul className="plain-list compact">
+              <li>회계 처리 및 월별 재무제표 결산</li>
+              <li>월별 재무보고서 작성</li>
+              <li>부가가치세 신고</li>
+              <li>근태 관리</li>
+            </ul>
           </article>
         </div>
       </section>
 
-      <section className="projects section-shell" id="work">
-        <div className="projects-header">
-          <div>
-            <p className="section-label">ALL PROJECTS / 2017 — 2026</p>
-            <h2>진행한 모든 프로젝트</h2>
-          </div>
-          <p>
-            신규 개발뿐 아니라 인수인계, 리뉴얼, 리팩터링과 장기 운영까지 포함했습니다.
-            실무에서 소프트웨어의 수명 전체를 경험했습니다.
-          </p>
+      <section className="projects page-width" id="projects">
+        <div className="section-title sticky-title">
+          <span>02</span>
+          <h2>프로젝트</h2>
+          <p>혜움랩스에서 수행한 개발 업무 전체를 기간 역순으로 정리했습니다.</p>
         </div>
         <div className="project-list">
           {projects.map((project, index) => (
-            <article className="project-row" key={project.title}>
-              <div className="project-index">{String(index + 1).padStart(2, '0')}</div>
-              <div className="project-period">{project.period}</div>
-              <div className="project-content">
-                <div className="project-title-line">
-                  <h3>{project.title}</h3>
-                  {project.accent && <span>{project.accent}</span>}
-                </div>
-                <p>{project.summary}</p>
-                <ul aria-label={`${project.title} 기술 스택`}>
-                  {project.stack.map((item) => <li key={item}>{item}</li>)}
-                </ul>
+            <article className="project" key={project.title}>
+              <div className="project-meta">
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <time>{project.period}</time>
               </div>
+              <h3>{project.title}</h3>
+              <h4>수행 업무</h4>
+              <ul className="work-list">
+                {project.work.map((item) => <li key={item}>{item}</li>)}
+              </ul>
+              {project.result && (
+                <div className="result"><span>결과</span><strong>{project.result}</strong></div>
+              )}
+              <ul className="tags" aria-label={`${project.title} 기술 스택`}>
+                {project.stack.map((item) => <li key={item}>{item}</li>)}
+              </ul>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="education section-shell">
-        <p className="section-label">EDUCATION</p>
-        <div>
-          <span>2006.03 — 2013.06</span>
-          <h2>세종대학교 경영학과</h2>
-          <p>중급회계 · 관리회계 · 세법</p>
+      <section className="skills page-width" id="skills">
+        <div className="section-title">
+          <span>03</span>
+          <h2>기술</h2>
+        </div>
+        <dl className="skill-table">
+          {skills.map(([category, items]) => (
+            <div key={category}><dt>{category}</dt><dd>{items}</dd></div>
+          ))}
+        </dl>
+      </section>
+
+      <section className="education page-width">
+        <div className="section-title">
+          <span>04</span>
+          <h2>학력</h2>
+        </div>
+        <div className="education-content">
+          <div><h3>세종대학교 경영학과</h3><time>2006.03 — 2013.06</time></div>
+          <p>졸업 · 중급회계, 관리회계, 세법 이수</p>
         </div>
       </section>
 
       <section className="contact" id="contact">
-        <div className="section-shell">
-          <p className="section-label light">CONTACT</p>
-          <h2>도메인을 깊이 이해하는<br />Python 백엔드 개발자를 찾고 계신가요?</h2>
-          <div className="contact-links">
-            <a href="mailto:loqbzes@gmail.com">
-              <span>Email</span><strong>loqbzes@gmail.com</strong><i aria-hidden="true">↗</i>
-            </a>
-            <a href="tel:+821032728012">
-              <span>Phone</span><strong>+82 10-3272-8012</strong><i aria-hidden="true">↗</i>
-            </a>
+        <div className="page-width contact-inner">
+          <div className="section-title dark-title"><span>05</span><h2>연락처</h2></div>
+          <div className="contact-info">
+            <a href="mailto:loqbzes@gmail.com"><span>Email</span><strong>loqbzes@gmail.com</strong></a>
+            <a href="tel:+821032728012"><span>Phone</span><strong>+82 10-3272-8012</strong></a>
           </div>
         </div>
       </section>
 
       <footer>
-        <a className="wordmark" href="#top">DONGHO <span>LEE</span></a>
-        <p>Python Backend Engineer · Seoul, Korea</p>
-        <span>© 2026 이동호</span>
+        <span>이동호 · Python Backend Developer</span>
+        <a href="#top">맨 위로 ↑</a>
       </footer>
     </main>
   );
