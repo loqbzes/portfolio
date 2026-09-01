@@ -244,21 +244,23 @@ export default function Home() {
                       {project.caseStudy.flow.map((item, index) => (
                         <div className="flow-step" key={item}>
                           <span>{String(index + 1).padStart(2, '0')}</span>
-                          <p>{item}</p>
+                          <div>
+                            <p>{item}</p>
+                            {index === project.caseStudy!.flow.length - 1 && (
+                              <div className="flow-guardrails">
+                                <strong>코드 수정 조건</strong>
+                                <ul>{project.caseStudy!.guardrails.map((guardrail) => <li key={guardrail}>{guardrail}</li>)}</ul>
+                              </div>
+                            )}
+                          </div>
                         </div>
                       ))}
                     </div>
                   </section>
-                  <div className="case-columns">
-                    <section>
-                      <h4>안전장치</h4>
-                      <ul>{project.caseStudy.guardrails.map((item) => <li key={item}>{item}</li>)}</ul>
-                    </section>
-                    <section className="case-outcome">
-                      <h4>도입 결과</h4>
-                      <ul>{project.caseStudy.outcomes.map((item) => <li key={item}>{item}</li>)}</ul>
-                    </section>
-                  </div>
+                  <section className="case-outcome">
+                    <h4>도입 결과</h4>
+                    <ul>{project.caseStudy.outcomes.map((item) => <li key={item}>{item}</li>)}</ul>
+                  </section>
                 </div>
               ) : (
                 <>
