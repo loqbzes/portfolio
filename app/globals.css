@@ -42,11 +42,12 @@ nav { display: flex; gap: 28px; font-size: .76rem; color: var(--muted); }
   letter-spacing: .13em;
 }
 .intro h1 {
+  max-width: 900px;
   margin: 0;
-  font-size: clamp(5rem, 14vw, 11.5rem);
-  font-weight: 760;
-  line-height: .86;
-  letter-spacing: -.095em;
+  font-size: clamp(3.6rem, 8vw, 7.2rem);
+  font-weight: 720;
+  line-height: .94;
+  letter-spacing: -.075em;
 }
 .intro-grid {
   margin-top: 85px;
@@ -140,7 +141,7 @@ footer { min-height: 90px; padding: 0 max(32px, calc((100vw - 1180px) / 2)); dis
   .page-width, .topbar { width: min(100% - 38px, 640px); }
   nav a:not(:last-child) { display: none; }
   .intro { padding: 75px 0 85px; }
-  .intro h1 { font-size: clamp(5rem, 25vw, 8rem); }
+  .intro h1 { font-size: clamp(3.5rem, 16vw, 6rem); }
   .intro-grid { margin-top: 60px; grid-template-columns: 1fr; gap: 55px; }
   .summary, .projects, .skills, .education, .contact-inner { padding: 80px 0; grid-template-columns: 1fr; gap: 45px; }
   .sticky-title { position: static; }

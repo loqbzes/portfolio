@@ -140,8 +140,8 @@ export default function Home() {
       </header>
 
       <section className="intro page-width">
-        <p className="role">PYTHON BACKEND DEVELOPER</p>
-        <h1>이동호</h1>
+        <p className="role">CAREER PORTFOLIO / 2017 — 2026</p>
+        <h1>Python Backend<br />Developer</h1>
         <div className="intro-grid">
           <p>
             9년 4개월 동안 Python으로 세무 자료 수집, 세무 신고, ERP 자동화,
