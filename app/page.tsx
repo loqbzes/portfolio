@@ -88,13 +88,32 @@ const projects: Project[] = [
   },
   {
     period: '2023.01 — 2026.07',
-    title: '세무사랑 자동화 봇 개발',
+    title: '세무사랑 ERP API 연동',
     work: [
-      '세무사랑 측이 제공한 C++ DLL API를 CPython에서 호출하는 연동 모듈 개발',
-      'DLL API로 처리할 수 없는 업무는 Windows UI 자동화를 결합해 ERP 자동화 태스크로 구현',
-      'Celery와 Redis를 이용해 Windows 서버에서 자동화 작업을 비동기로 실행',
+      'SmartA에서 수행하던 ERP 업무를 세무사랑 API 기반으로 이전',
     ],
-    stack: ['CPython', 'C++ DLL API', 'Celery', 'Redis', 'EC2 Windows Server', 'GitHub Actions'],
+    stack: ['Python 3.6 32-bit', 'CPython', 'C++ DLL API', 'Celery', 'Redis', 'Windows UI Automation', 'EC2 Windows Server'],
+    caseStudy: {
+      problem: [
+        'SmartA에서 수행하던 ERP 업무를 세무사랑 환경으로 이전할 필요',
+        '세무사랑 DLL이 Python 3.6 32-bit에서만 로드돼 기존 애플리케이션과 호환되지 않는 제약',
+        '데이터 조회·저장은 API로 가능했지만 일부 API는 실제 ERP 화면 실행이 필수',
+      ],
+      ownership: [
+        'PM과 함께 필요한 API와 파라미터를 산출해 세무사랑 측에 전달할 개발 요청 문서를 작성했으며, DLL 호출 애플리케이션부터 기존 시스템 연동과 UI 자동화까지 모든 개발을 직접 담당했습니다.',
+      ],
+      flow: [
+        'ERP 데이터 조회·저장 작업은 세무사랑 API로 처리하고 화면이 필요한 기능만 UI 자동화로 보완',
+        'C++ DLL을 로드할 수 있는 Python 3.6 32-bit 전용 CPython 애플리케이션을 별도로 구성',
+        '기존 애플리케이션에서 어댑터를 통해 DLL 호출 애플리케이션의 Celery 태스크를 요청',
+        '로그인 상태를 유지한 순차 실행을 위해 Windows 로컬 환경에 별도 Redis 큐와 Celery 워커를 구성',
+        '로그인 태스크 실행 후 필요한 경우 UI 자동화를 수행하고, 이어서 API 호출 태스크를 실행',
+      ],
+      outcomes: [
+        'SmartA에서 수행하던 ERP 업무 전체를 세무사랑 환경으로 이전',
+        'SmartA 업데이트 종료 이후 모든 대상 업무를 세무사랑 기반으로 운영',
+      ],
+    },
   },
   {
     period: '2025.08',
