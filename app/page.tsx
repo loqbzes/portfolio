@@ -190,16 +190,6 @@ const projects: Project[] = [
     stack: ['Python', 'Flask', 'Django', 'Celery', 'EC2', 'Redis', 'Slack'],
   },
   {
-    period: '2020.06 — 2022.10',
-    title: '일별 금융정보 스크래핑 유지보수',
-    work: [
-      '고객사의 일별 금융정보 수집 작업과 장애 대응',
-      '홈택스, 은행, 카드사, 여신금융협회 데이터를 외부 스크래핑 서비스를 통해 수집·저장',
-      'Celery 태스크와 Redis 큐, RDS·DynamoDB 저장소 운영',
-    ],
-    stack: ['Python', 'Celery', 'EC2 Windows Server', 'RDS', 'DynamoDB', 'Redis'],
-  },
-  {
     period: '2022.04 — 2022.07',
     title: 'Google Drive 동기화 기능 리뉴얼',
     work: [
