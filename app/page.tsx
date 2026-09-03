@@ -61,9 +61,9 @@ const projects: Project[] = [
     stack: ['Python', 'Celery', 'ElastiCache for Redis', 'ECS', 'ECR', 'Docker', 'Terraform', 'GitHub Actions', 'CloudWatch', 'Sentry'],
     caseStudy: {
       background:
-        '2020년 기존 Windows 기반 서비스를 인수한 뒤 운영과 기능 개선을 이어갔으며, 2024년부터 처리 속도와 용량 한계를 해결하기 위한 Linux·ECS 기반 리뉴얼을 진행했습니다.',
+        '2020년 기존 Windows 기반 서비스를 인수한 뒤 세무 일정에 따라 필요한 서비스를 개발하고 운영했으며, 2024년부터 처리 속도와 용량 한계를 해결하기 위한 Linux·ECS 기반 리뉴얼을 진행했습니다.',
       history: [
-        '세무 일정에 맞춰 기존 스크래핑·신고 서비스를 운영하고 장애와 변경 사항에 대응',
+        '세무 일정에 따라 필요한 스크래핑·신고 서비스를 개발하고 운영',
         '여러 Lambda 프로젝트에 분산돼 있던 스크래핑 후처리 기능과 실행 흐름을 파악해 유지보수',
         '초기 인수 과정에서 불필요한 태스크를 정리하고, 이후 업무 변화에 따라 필요한 스크래핑·후처리 태스크를 지속적으로 추가·수정',
       ],
@@ -73,7 +73,7 @@ const projects: Project[] = [
         '작업을 여러 구간으로 나누는 우회 방식을 적용해도 추가 처리가 불가능한 용량 한계',
       ],
       ownership: [
-        '2020년부터 기존 Windows 서비스의 운영과 기능 개선을 담당했습니다. 2024년 리뉴얼에서는 Linux 스크래핑 코드와 Docker 이미지, Celery·Redis 작업 처리, ECS·오토 스케일링, Terraform 인프라와 CI/CD를 모두 직접 구축했습니다.',
+        '2020년부터 기존 Windows 환경에서 세무 일정에 필요한 서비스의 개발과 운영을 담당했습니다. 2024년 리뉴얼에서는 Linux 스크래핑 코드와 Docker 이미지, Celery·Redis 작업 처리, ECS·오토 스케일링, Terraform 인프라와 CI/CD를 모두 직접 구축했습니다.',
       ],
       flow: [
         '스크래핑 코드를 Linux 환경에서 실행하도록 변경해 개별 작업의 처리 시간을 단축',
