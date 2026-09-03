@@ -119,12 +119,31 @@ const projects: Project[] = [
     period: '2025.08',
     title: '홈택스·4대보험 수임사 스크래핑 웹 백엔드',
     work: [
-      '수임사 스크래핑 데이터 저장소를 DynamoDB에서 PostgreSQL로 변경',
-      'NoSQL 형태의 기존 데이터를 관계형 구조로 저장하기 위한 모델 설계',
-      '저장·조회에 필요한 Django API 구성',
+      '스크래핑 데이터 저장·조회 구조를 DynamoDB에서 PostgreSQL로 전환',
     ],
-    result: 'DynamoDB 사용 비용을 줄이고 관계형 조회와 운영 쿼리의 편의성을 개선',
-    stack: ['Python', 'Django', 'PostgreSQL', 'DynamoDB'],
+    stack: ['Python', 'Django', 'ORM', 'PostgreSQL', 'DynamoDB', 'AWS Lambda'],
+    caseStudy: {
+      problem: [
+        'DynamoDB의 높은 운영 비용',
+        '조회 조건이 추가될 때마다 별도 인덱스와 추가 개발이 필요한 구조',
+        '인덱스 증가에 따라 저장·조회 비용도 함께 증가',
+        'DynamoDB 데이터와 회사 정보를 연결하기 위한 예약 Lambda 태스크 운영',
+      ],
+      ownership: [
+        '기존 Django 프로젝트에서 PostgreSQL 데이터 모델, 스크래핑 결과 적재 로직과 API를 직접 구현했습니다. 기존 인프라와 배포 구성은 변경하지 않았습니다.',
+      ],
+      flow: [
+        '매일 수행되는 전체 스크래핑의 결과를 PostgreSQL에 직접 적재',
+        '사업자등록번호가 일치하는 스크래핑 데이터와 기존 회사 데이터를 Foreign Key로 연결',
+        '별도 데이터 마이그레이션 없이 신규 구조 적용 후 다음 전체 스크래핑부터 PostgreSQL 데이터로 전환',
+        'Django API 안에서 SQL 쿼리로 회사와 스크래핑 데이터를 연결해 홈택스·4대보험 수임 여부를 확인',
+      ],
+      outcomes: [
+        '기존 DynamoDB 테이블 제거를 통한 저장·조회 비용 절감',
+        'DynamoDB를 읽어 회사 정보를 연결하던 예약 Lambda 태스크 제거',
+        '수임 여부 확인 흐름을 Django 백엔드 내부의 관계형 조회로 단순화',
+      ],
+    },
   },
   {
     period: '2017.04 — 2023.07',
