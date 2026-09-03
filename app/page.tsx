@@ -7,9 +7,10 @@ type Project = {
   caseStudy?: {
     background?: string;
     history?: string[];
+    problemLabel?: string;
     problem: string[];
     ownership: string[];
-    flow: string[];
+    flow?: string[];
     guardrails?: string[];
     operations?: string[];
     outcomes: string[];
@@ -158,13 +159,24 @@ const projects: Project[] = [
     period: '2017.04 — 2023.07',
     title: '더존 SmartA ERP 자동화 봇 개발',
     work: [
-      '재무제표 등 재무정보 추출, 급여 데이터 입력, 세무 증명서 PDF 출력 자동화 구현',
-      'SmartA 자체 스크래핑을 포함한 다수의 Windows 자동화 스크립트 개발·유지보수',
-      'Celery 기반 비동기 작업으로 자동화 태스크를 실행하고 Redis로 큐 상태 관리',
-      'EC2 Windows Server에서 ERP 서버와 자동화 클라이언트를 운영하고 실행 성능을 최적화',
-      'CloudWatch·Slack으로 로그와 오류를 수집하고 운영 알림 구성',
+      '회사 설립 단계부터 각종 SmartA ERP 작업을 자동화하는 시스템 개발',
     ],
     stack: ['Python', 'Celery', 'Redis', 'EC2 Windows Server', 'S3', 'CloudWatch', 'Slack'],
+    caseStudy: {
+      problemLabel: '프로젝트 목표',
+      problem: [
+        '회사 설립 시점부터 각종 SmartA ERP 작업을 자동화하는 서비스 구축',
+        '초기 손익 데이터 제공 서비스에서 시작해 회사 성장에 맞춰 자동화 대상 업무를 지속적으로 확대',
+      ],
+      ownership: [
+        '재무정보 추출, 급여 데이터 입력, 세무 증명서 PDF 출력과 SmartA 데이터 스크래핑을 포함해 프로젝트의 개발·개선·운영 전반을 단독으로 담당했습니다.',
+      ],
+      outcomes: [
+        '수임사의 손익 데이터를 제공하는 초기 서비스를 통해 고객 확보에 기여',
+        '급여 입력 등 다양한 ERP 업무로 자동화 범위를 확대하며 회사의 서비스 확장에 기여',
+        'SmartA 업데이트 종료에 맞춰 대상 업무 전체를 세무사랑 기반으로 이전',
+      ],
+    },
   },
   {
     period: '2019.04 — 2023.07',
@@ -301,7 +313,7 @@ export default function Home() {
                   )}
                   <div className="case-overview">
                     <section>
-                      <h4>기존 문제</h4>
+                      <h4>{project.caseStudy.problemLabel ?? '기존 문제'}</h4>
                       <ul>{project.caseStudy.problem.map((item) => <li key={item}>{item}</li>)}</ul>
                     </section>
                     <section>
@@ -309,25 +321,27 @@ export default function Home() {
                       <p className="case-single">{project.caseStudy.ownership[0]}</p>
                     </section>
                   </div>
-                  <section>
-                    <h4>처리 구조</h4>
-                    <div className="flow-list">
-                      {project.caseStudy.flow.map((item, index) => (
-                        <div className="flow-step" key={item}>
-                          <span>{String(index + 1).padStart(2, '0')}</span>
-                          <div>
-                            <p>{item}</p>
-                            {index === project.caseStudy!.flow.length - 1 && project.caseStudy!.guardrails && (
-                              <div className="flow-guardrails">
-                                <strong>코드 수정 조건</strong>
-                                <ul>{project.caseStudy!.guardrails.map((guardrail) => <li key={guardrail}>{guardrail}</li>)}</ul>
-                              </div>
-                            )}
+                  {project.caseStudy.flow && (
+                    <section>
+                      <h4>처리 구조</h4>
+                      <div className="flow-list">
+                        {project.caseStudy.flow.map((item, index) => (
+                          <div className="flow-step" key={item}>
+                            <span>{String(index + 1).padStart(2, '0')}</span>
+                            <div>
+                              <p>{item}</p>
+                              {index === project.caseStudy!.flow!.length - 1 && project.caseStudy!.guardrails && (
+                                <div className="flow-guardrails">
+                                  <strong>코드 수정 조건</strong>
+                                  <ul>{project.caseStudy!.guardrails.map((guardrail) => <li key={guardrail}>{guardrail}</li>)}</ul>
+                                </div>
+                              )}
+                            </div>
                           </div>
-                        </div>
-                      ))}
-                    </div>
-                  </section>
+                        ))}
+                      </div>
+                    </section>
+                  )}
                   {project.caseStudy.operations && (
                     <section className="case-operations">
                       <h4>운영 및 모니터링</h4>
