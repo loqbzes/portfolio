@@ -30,7 +30,7 @@ const projects: Project[] = [
         '실무 판단이 필요한 문의에 개발자가 답변하기 어려운 상황 발생',
       ],
       ownership: [
-        '애플리케이션 개발 전 과정을 단독으로 담당했습니다. 배포에는 기존 저장소의 인프라와 CI/CD 체계를 활용했습니다.',
+        '애플리케이션 개발 전 과정을 단독으로 담당했습니다. 배포에는 기존 프로젝트에 구성되어 있던 인프라와 CI/CD를 활용했습니다.',
       ],
       flow: [
         '개발진에 전달할 CS를 담당자가 선택하거나 스레드에서 AI를 멘션하면 Slack Bolt가 이벤트와 전체 스레드 내용을 수신',
@@ -60,14 +60,14 @@ const projects: Project[] = [
     stack: ['Python', 'Celery', 'ElastiCache for Redis', 'ECS', 'ECR', 'Docker', 'Terraform', 'GitHub Actions', 'CloudWatch', 'Sentry'],
     caseStudy: {
       background:
-        '2020년부터 기존 세무 정보 스크래핑·신고 서비스를 인수해 운영하고 기능을 개선했습니다. 2024년부터 Windows 기반 서비스의 용량 한계를 해결하기 위해 Linux·ECS 기반의 신규 애플리케이션을 개발했습니다. 이 리뉴얼은 새로운 Git 저장소 생성부터 직접 진행했습니다.',
+        '2020년부터 기존 세무 정보 스크래핑·신고 서비스를 인수해 운영하고 기능을 개선했습니다. 2024년부터 Windows 기반 서비스의 용량 한계를 해결하기 위해 Linux·ECS 기반의 신규 애플리케이션을 개발했습니다.',
       problem: [
         'Windows 기반 실행 환경으로 인한 오토 스케일링 제약',
         '긴 개별 스크래핑 처리 시간과 제한된 동시 처리량',
         '작업을 여러 구간으로 나누는 우회 방식을 적용해도 추가 처리가 불가능한 용량 한계',
       ],
       ownership: [
-        '저장소 생성부터 Linux 스크래핑 코드, Docker 이미지, Celery·Redis 구성, ECS·오토 스케일링, Terraform과 CI/CD까지 전체를 직접 구축했습니다.',
+        'Linux 스크래핑 코드와 Docker 이미지, Celery·Redis 작업 처리, ECS·오토 스케일링, Terraform 인프라와 CI/CD를 모두 직접 구축했습니다.',
       ],
       flow: [
         '스크래핑 코드를 Linux 환경에서 실행하도록 변경해 개별 작업의 처리 시간을 단축',
