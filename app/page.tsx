@@ -189,25 +189,6 @@ const projects: Project[] = [
     ],
     stack: ['Python', 'Flask', 'Django', 'Celery', 'EC2', 'Redis', 'Slack'],
   },
-  {
-    period: '2022.04 — 2022.07',
-    title: 'Google Drive 동기화 기능 리뉴얼',
-    work: [
-      'Google Drive의 파일 생성·이동·삭제 이벤트에 따라 내부 데이터베이스를 갱신하는 기능 개발',
-      '회사 또는 담당자 변경 시 Drive 파일과 내부 고객 정보의 연결을 동기화하는 기능 담당',
-    ],
-    stack: ['Python', 'Django', 'Google API', 'RDS'],
-  },
-  {
-    period: '2019.08 — 2019.10',
-    title: '세금계산서·NICE·알림톡 서버리스 앱 개발',
-    work: [
-      '팝빌 회원가입과 세금계산서 발행 기능 개발',
-      'NICE 평가정보 수집 기능 개발',
-      '카카오톡 알림톡 발송 기능을 Lambda 기반 서버리스 애플리케이션으로 구현',
-    ],
-    stack: ['Python', 'AWS Lambda', 'AWS SAM', 'SQS'],
-  },
 ];
 
 const skills = [
@@ -277,7 +258,7 @@ export default function Home() {
         <div className="section-title sticky-title">
           <span>02</span>
           <h2>프로젝트</h2>
-          <p>혜움랩스에서 수행한 개발 업무 전체를 기간 역순으로 정리했습니다.</p>
+          <p>혜움랩스에서 수행한 주요 개발 프로젝트를 기간 역순으로 정리했습니다.</p>
         </div>
         <div className="project-list">
           {projects.map((project, index) => (
