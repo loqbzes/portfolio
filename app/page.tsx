@@ -60,7 +60,7 @@ const projects: Project[] = [
     stack: ['Python', 'Celery', 'ElastiCache for Redis', 'ECS', 'ECR', 'Docker', 'Terraform', 'GitHub Actions', 'CloudWatch', 'Sentry'],
     caseStudy: {
       background:
-        '2020년부터 기존 세무 정보 스크래핑·신고 서비스를 인수해 운영하고 기능을 개선했습니다. 2024년부터 기존 Windows 기반 서비스의 용량 한계를 해결하기 위한 신규 저장소를 만들고 Linux·ECS 기반으로 전면 리뉴얼했습니다.',
+        '2020년부터 기존 세무 정보 스크래핑·신고 서비스를 인수해 운영하고 기능을 개선했습니다. 2024년부터 Windows 기반 서비스의 용량 한계를 해결하기 위해 Linux·ECS 기반의 신규 애플리케이션을 개발했습니다. 이 리뉴얼은 새로운 Git 저장소 생성부터 직접 진행했습니다.',
       problem: [
         'Windows 기반 실행 환경으로 인한 오토 스케일링 제약',
         '긴 개별 스크래핑 처리 시간과 제한된 동시 처리량',
