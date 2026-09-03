@@ -108,6 +108,7 @@ nav { display: flex; gap: 28px; font-size: .76rem; color: var(--muted); }
 .work-list li { margin-bottom: 9px; padding-left: 8px; color: #3f3f3a; font-size: .92rem; line-height: 1.7; word-break: keep-all; }
 .case-study { display: grid; gap: 38px; }
 .case-study section { padding-top: 22px; border-top: 1px solid var(--text); }
+.case-background { padding: 24px !important; background: var(--panel); border-top: 0 !important; }
 .case-overview { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .case-overview section { padding: 24px; background: #fffefa; border: 1px solid var(--line); }
 .case-overview ul { margin: 0; padding-left: 1rem; }

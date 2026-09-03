@@ -5,6 +5,7 @@ type Project = {
   result?: string;
   stack: string[];
   caseStudy?: {
+    background?: string;
     problem: string[];
     ownership: string[];
     flow: string[];
@@ -51,13 +52,15 @@ const projects: Project[] = [
     },
   },
   {
-    period: '2024.06 — 2026.07',
-    title: '세무 정보 스크래핑 서비스 리뉴얼',
+    period: '2020.06 — 2026.07',
+    title: '세무 정보 스크래핑 서비스 운영·리뉴얼',
     work: [
       'Windows 기반 스크래핑 서비스를 Linux·ECS 기반으로 리뉴얼',
     ],
     stack: ['Python', 'Celery', 'ElastiCache for Redis', 'ECS', 'ECR', 'Docker', 'Terraform', 'GitHub Actions', 'CloudWatch', 'Sentry'],
     caseStudy: {
+      background:
+        '2020년부터 기존 세무 정보 스크래핑·신고 서비스를 인수해 운영하고 기능을 개선했습니다. 2024년부터 기존 Windows 기반 서비스의 용량 한계를 해결하기 위한 신규 저장소를 만들고 Linux·ECS 기반으로 전면 리뉴얼했습니다.',
       problem: [
         'Windows 기반 실행 환경으로 인한 오토 스케일링 제약',
         '긴 개별 스크래핑 처리 시간과 제한된 동시 처리량',
@@ -156,19 +159,6 @@ const projects: Project[] = [
       'CloudWatch·Slack으로 로그와 오류를 수집하고 운영 알림 구성',
     ],
     stack: ['Python', 'Celery', 'Redis', 'EC2 Windows Server', 'S3', 'CloudWatch', 'Slack'],
-  },
-  {
-    period: '2020.06 — 2024.05',
-    title: '세무 정보 스크래핑·신고 서비스 개선',
-    work: [
-      '법인세·부가세·원천세·종합소득세의 국세·지방세 신고와 4대보험 신고 기능 유지보수',
-      '홈택스·고용보험 자료, 세무신고 도움자료, PG사 데이터 스크래핑과 증명서 출력 기능 개발',
-      '여러 마이크로서비스로 흩어진 프로젝트와 중복 태스크를 하나의 프로젝트로 통합',
-      '추상 클래스를 도입해 공통 실행 흐름과 세목별 고유 로직을 분리하고 신고·스크래핑 정보를 모델링',
-      '로깅을 LogDNA에서 CloudWatch로 이전하고 작업 진행 과정을 DB에 기록하도록 개선',
-      '운영자가 작업 상태를 확인할 수 있도록 API 문서를 추가',
-    ],
-    stack: ['Python', 'Celery', 'EC2', 'S3', 'DynamoDB', 'CloudWatch', 'Redis', 'Slack'],
   },
   {
     period: '2019.04 — 2023.07',
@@ -291,6 +281,12 @@ export default function Home() {
               <h3>{project.title}</h3>
               {project.caseStudy ? (
                 <div className="case-study">
+                  {project.caseStudy.background && (
+                    <section className="case-background">
+                      <h4>프로젝트 범위</h4>
+                      <p className="case-single">{project.caseStudy.background}</p>
+                    </section>
+                  )}
                   <div className="case-overview">
                     <section>
                       <h4>기존 문제</h4>
