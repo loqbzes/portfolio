@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
+  metadataBase: new URL('https://dongho-lee-portfolio.loqbzes.chatgpt.site'),
   title: '이동호 | Python Backend Developer',
   description:
     'Python, Django, Celery, AWS를 사용한 이동호의 경력과 프로젝트 포트폴리오입니다.',

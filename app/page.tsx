@@ -47,7 +47,7 @@ const projects: Project[] = [
         '자동 반영하지 않고 Draft PR 생성까지만 수행하며 최종 리뷰는 개발자가 담당',
       ],
       outcomes: [
-        '개발자에게 직접 전달되던 CS 문의 해소',
+        '개발자에게 바로 전달되던 CS 문의가 AI 응답을 먼저 거치는 흐름으로 전환',
         'CS·운영 담당자의 긍정적인 사용 반응',
         '다른 사업부의 Slack 기반 AI 에이전트 개발로 확산',
       ],
@@ -55,14 +55,14 @@ const projects: Project[] = [
   },
   {
     period: '2020.06 — 2026.07',
-    title: '세무 정보 스크래핑 서비스 운영·리뉴얼',
+    title: '세무 정보 스크래핑 서비스 개발·리뉴얼',
     work: [
       'Windows 기반 스크래핑 서비스를 Linux·ECS 기반으로 리뉴얼',
     ],
     stack: ['Python', 'Celery', 'ElastiCache for Redis', 'ECS', 'ECR', 'Docker', 'Terraform', 'GitHub Actions', 'CloudWatch', 'Sentry'],
     caseStudy: {
       background:
-        '2020년 기존 Windows 기반 서비스를 인수한 뒤 세무 일정에 따라 필요한 서비스를 개발하고 운영했으며, 2024년부터 처리 속도와 용량 한계를 해결하기 위한 Linux·ECS 기반 리뉴얼을 진행했습니다.',
+        '2020년부터 Windows 기반 서비스의 개발·운영을 담당했으며, 2024년부터 Linux·ECS 기반 리뉴얼을 진행했습니다.',
       history: [
         '세무 일정에 따라 필요한 스크래핑·신고 서비스를 개발하고 운영',
         '여러 Lambda 프로젝트에 분산돼 있던 스크래핑 후처리 기능과 실행 흐름을 파악해 유지보수',
@@ -74,7 +74,7 @@ const projects: Project[] = [
         '작업을 여러 구간으로 나누는 우회 방식을 적용해도 추가 처리가 불가능한 용량 한계',
       ],
       ownership: [
-        '2020년부터 기존 Windows 환경에서 세무 일정에 필요한 서비스의 개발과 운영을 담당했습니다. 2024년 리뉴얼에서는 Linux 스크래핑 코드와 Docker 이미지, Celery·Redis 작업 처리, ECS·오토 스케일링, Terraform 인프라와 CI/CD를 모두 직접 구축했습니다.',
+        '리뉴얼 프로젝트 생성부터 Linux 스크래핑 코드, Celery·Redis 작업 처리, Docker·ECS·오토 스케일링, Terraform 인프라와 CI/CD 구축까지 전 과정을 직접 담당했습니다.',
       ],
       flow: [
         '스크래핑 코드를 Linux 환경에서 실행하도록 변경해 개별 작업의 처리 시간을 단축',
@@ -106,7 +106,7 @@ const projects: Project[] = [
     caseStudy: {
       problem: [
         'SmartA에서 수행하던 ERP 업무를 세무사랑 환경으로 이전할 필요',
-        '세무사랑 DLL이 Python 3.6 32-bit에서만 로드돼 기존 애플리케이션과 호환되지 않는 제약',
+        '제공된 DLL을 로드할 수 있는 최신 Python 환경이 3.6 32-bit여서 기존 애플리케이션에서 직접 호출할 수 없는 제약',
         '데이터 조회·저장은 API로 가능했지만 일부 API는 실제 ERP 화면 실행이 필수',
       ],
       ownership: [
@@ -116,27 +116,25 @@ const projects: Project[] = [
         'ERP 데이터 조회·저장 작업은 세무사랑 API로 처리하고 화면이 필요한 기능만 UI 자동화로 보완',
         'C++ DLL을 로드할 수 있는 Python 3.6 32-bit 전용 CPython 애플리케이션을 별도로 구성',
         '기존 애플리케이션에서 어댑터를 통해 DLL 호출 애플리케이션의 Celery 태스크를 요청',
-        '로그인 상태를 유지한 순차 실행을 위해 Windows 로컬 환경에 별도 Redis 큐와 Celery 워커를 구성',
+        'DLL 호출 앱의 작업을 기존 앱의 큐와 분리해 Windows 로컬 Redis 큐와 Celery 워커에서 처리',
         '로그인 태스크 실행 후 필요한 경우 UI 자동화를 수행하고, 이어서 API 호출 태스크를 실행',
       ],
       outcomes: [
-        'SmartA에서 수행하던 ERP 업무 전체를 세무사랑 환경으로 이전',
-        'SmartA 업데이트 종료 이후 모든 대상 업무를 세무사랑 기반으로 운영',
+        'SmartA 업데이트 종료에 대응해 기존 ERP 업무 전체를 세무사랑 환경으로 이전',
       ],
     },
   },
   {
     period: '2025.08',
-    title: '홈택스·4대보험 수임사 스크래핑 웹 백엔드',
+    title: '수임 정보 저장·조회 구조 개선 — DynamoDB에서 PostgreSQL로 전환',
     work: [
       '스크래핑 데이터 저장·조회 구조를 DynamoDB에서 PostgreSQL로 전환',
     ],
     stack: ['Python', 'Django', 'ORM', 'PostgreSQL', 'DynamoDB', 'AWS Lambda'],
     caseStudy: {
       problem: [
-        'DynamoDB의 높은 운영 비용',
-        '조회 조건이 추가될 때마다 별도 인덱스와 추가 개발이 필요한 구조',
-        '인덱스 증가에 따라 저장·조회 비용도 함께 증가',
+        '당시 수임 정보 서비스의 DynamoDB 테이블·인덱스 운영 비용 부담',
+        '새로운 조회 요구사항에 대응할 때 별도 인덱스 구성과 추가 개발이 필요했던 데이터 구조',
         'DynamoDB 데이터와 회사 정보를 연결하기 위한 예약 Lambda 태스크 운영',
       ],
       ownership: [
@@ -149,8 +147,7 @@ const projects: Project[] = [
         'Django API 안에서 SQL 쿼리로 회사와 스크래핑 데이터를 연결해 홈택스·4대보험 수임 여부를 확인',
       ],
       outcomes: [
-        '기존 DynamoDB 테이블 제거를 통한 저장·조회 비용 절감',
-        'DynamoDB를 읽어 회사 정보를 연결하던 예약 Lambda 태스크 제거',
+        'DynamoDB 테이블과 회사 정보 연동용 예약 Lambda를 제거해 비용과 처리 단계 축소',
         '수임 여부 확인 흐름을 Django 백엔드 내부의 관계형 조회로 단순화',
       ],
     },
@@ -178,17 +175,6 @@ const projects: Project[] = [
       ],
     },
   },
-  {
-    period: '2019.04 — 2023.07',
-    title: 'Slack·카카오톡 연동 상담 서비스 개선',
-    work: [
-      '고객의 카카오톡 메시지와 담당 직원의 Slack을 연결하는 상담 서비스 인수·유지보수',
-      '로깅과 오류 알림을 추가하고 휴일·근무 시간 외 자동응답 기능 구현',
-      'Slack Bot에서 카카오톡 고객과 백엔드 고객 정보를 연결해 확인하는 UI 개발',
-      '기존 코드를 분석·리팩터링하고 카카오톡·메일·Slack 알림 기능을 Django 백엔드로 이전',
-    ],
-    stack: ['Python', 'Flask', 'Django', 'Celery', 'EC2', 'Redis', 'Slack'],
-  },
 ];
 
 const skills = [
@@ -207,7 +193,7 @@ export default function Home() {
         <a href="#top" className="name">이동호</a>
         <nav aria-label="주요 메뉴">
           <a href="#summary">경력 요약</a>
-          <a href="#projects">프로젝트</a>
+          <a href="#projects" className="projects-link">프로젝트</a>
           <a href="#skills">기술</a>
           <a href="#contact">연락처</a>
         </nav>
@@ -258,7 +244,7 @@ export default function Home() {
         <div className="section-title sticky-title">
           <span>02</span>
           <h2>프로젝트</h2>
-          <p>혜움랩스에서 수행한 주요 개발 프로젝트를 기간 역순으로 정리했습니다.</p>
+          <p>혜움랩스에서 수행한 주요 프로젝트의 개발 내용과 설계 선택, 결과를 정리했습니다.</p>
         </div>
         <div className="project-list">
           {projects.map((project, index) => (
@@ -268,6 +254,12 @@ export default function Home() {
                 <time>{project.period}</time>
               </div>
               <h3>{project.title}</h3>
+              {project.caseStudy && (
+                <div className="project-highlight">
+                  <span>주요 결과</span>
+                  <p>{project.caseStudy.outcomes[0]}</p>
+                </div>
+              )}
               {project.caseStudy ? (
                 <div className="case-study">
                   {project.caseStudy.background && (
@@ -278,7 +270,7 @@ export default function Home() {
                   )}
                   {project.caseStudy.history && (
                     <section className="case-operations">
-                      <h4>리뉴얼 전 운영·개선</h4>
+                      <h4>리뉴얼 전 개발·개선</h4>
                       <ul>{project.caseStudy.history.map((item) => <li key={item}>{item}</li>)}</ul>
                     </section>
                   )}
@@ -319,10 +311,12 @@ export default function Home() {
                       <ul>{project.caseStudy.operations.map((item) => <li key={item}>{item}</li>)}</ul>
                     </section>
                   )}
-                  <section className="case-outcome">
-                    <h4>도입 결과</h4>
-                    <ul>{project.caseStudy.outcomes.map((item) => <li key={item}>{item}</li>)}</ul>
-                  </section>
+                  {project.caseStudy.outcomes.length > 1 && (
+                    <section className="case-outcome">
+                      <h4>도입 결과</h4>
+                      <ul>{project.caseStudy.outcomes.slice(1).map((item) => <li key={item}>{item}</li>)}</ul>
+                    </section>
+                  )}
                 </div>
               ) : (
                 <>
