@@ -17,7 +17,6 @@ export default function Home() {
       <section className="intro page-width">
         <p className="role">PYTHON BACKEND DEVELOPER / 2017 — 2026</p>
         <h1>PORTFOLIO</h1>
-        <PdfDownloads />
         <div className="intro-grid">
           <p>{profile.intro}</p>
           <dl>
@@ -178,7 +177,10 @@ export default function Home() {
 
       <footer>
         <span>{profile.name} · {profile.role}</span>
-        <a href="#top">맨 위로 ↑</a>
+        <div className="footer-actions">
+          <PdfDownloads />
+          <a href="#top">맨 위로 ↑</a>
+        </div>
       </footer>
     </main>
   );

@@ -38,7 +38,7 @@ export default function PdfDownloads() {
       window.setTimeout(() => URL.revokeObjectURL(url), 60_000);
       setStatus('PDF를 생성했습니다. 다운로드 목록을 확인해 주세요.');
     } catch {
-      setStatus('PDF를 만들지 못했습니다. 다시 시도하거나 PDF 다운로드 링크를 이용해 주세요.');
+      setStatus('PDF를 만들지 못했습니다. 잠시 후 다시 눌러 주세요.');
     } finally {
       inProgress.current = false;
       setBusy(false);
@@ -47,13 +47,9 @@ export default function PdfDownloads() {
 
   return (
     <div className="pdf-downloads">
-      <div className="pdf-actions" aria-label="포트폴리오 PDF">
-        <a className="pdf-download" href="/portfolio.pdf" download="이동호_포트폴리오.pdf">PDF 다운로드 ↓</a>
-        <button type="button" onClick={generate} disabled={busy} aria-busy={busy} aria-describedby="pdf-status">
-          {busy ? 'PDF 생성 중…' : '최신 내용으로 PDF 만들기'}
-        </button>
-      </div>
-      <p className="pdf-description">경력과 전체 프로젝트를 담은 A4 문서입니다.</p>
+      <button className="pdf-download-button" type="button" onClick={generate} disabled={busy} aria-busy={busy} aria-describedby="pdf-status">
+        {busy ? 'PDF 생성 중…' : 'PDF 다운로드 ↓'}
+      </button>
       <p id="pdf-status" className="pdf-status" role="status" aria-live="polite">{status}</p>
     </div>
   );

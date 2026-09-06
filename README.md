@@ -20,9 +20,8 @@ npm run dev
 
 ## PDF
 
-- 첫 화면의 **PDF 다운로드** 링크는 `/portfolio.pdf`를 내려받습니다.
-- **최신 내용으로 PDF 만들기**는 `/api/portfolio`에서 현재 배포된 데이터를 가져와 브라우저에서 PDF를 생성합니다.
-- 웹페이지와 두 PDF는 `app/portfolio-data.ts`의 내용을 공유합니다.
+- 푸터의 **PDF 다운로드** 버튼은 `/api/portfolio`에서 현재 배포된 데이터를 가져와 브라우저에서 PDF를 생성하고 다운로드합니다.
+- 웹페이지와 PDF는 `app/portfolio-data.ts`의 내용을 공유합니다. 빌드 시 생성하는 `/portfolio.pdf`도 같은 데이터를 사용합니다.
 - `npm run build`는 PDF도 자동으로 갱신합니다. PDF만 갱신하려면 `npm run pdf:build`를 실행합니다.
 - PDF 생성 라이브러리와 한글 글꼴은 생성 버튼을 누를 때 불러옵니다.
 - 나눔고딕 글꼴은 SIL Open Font License로 배포됩니다. 출처는 https://github.com/google/fonts/tree/main/ofl/nanumgothic 이며 라이선스는 `public/fonts/OFL.txt`에 포함되어 있습니다.
