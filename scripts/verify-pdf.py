@@ -50,7 +50,10 @@ for page in reader.pages:
 
 with pdfplumber.open(request['path']) as pdf:
     for number, page in enumerate(pdf.pages, 1):
-        assert len(page.chars) > 80, f'Unexpected sparse page: {number}'
+        assert len(page.chars) > 200, f'Unexpected sparse page: {number}'
+        # Preserve the vector-based site styling and prevent a return to plain text export.
+        assert len(page.rects) >= 2, f'Missing page background or panels: {number}'
+        assert not page.images, f'PDF text should not be replaced by screenshots: {number}'
         assert all(c['x0'] >= 40 and c['x1'] <= page.width - 38 for c in page.chars), f'Horizontal overflow on page {number}'
         assert all(c['top'] >= 15 and c['bottom'] <= page.height - 15 for c in page.chars), f'Vertical overflow on page {number}'
 
