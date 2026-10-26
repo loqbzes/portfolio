@@ -97,6 +97,7 @@ export default function Home() {
                           <div className="flow-step" key={item}>
                             <span>{String(index + 1).padStart(2, '0')}</span>
                             <div>
+                              {project.caseStudy!.flowTitles?.[index] && <h5 className="flow-title">{project.caseStudy!.flowTitles[index]}</h5>}
                               <p>{item}</p>
                               {index === project.caseStudy!.flow!.length - 1 && project.caseStudy!.guardrails && (
                                 <div className="flow-guardrails">

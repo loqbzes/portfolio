@@ -129,6 +129,7 @@ a:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
 .flow-step { padding: 17px 0; display: grid; grid-template-columns: 46px 1fr; gap: 12px; border-bottom: 1px solid var(--line); }
 .flow-step span { padding-top: 2px; color: var(--muted); font-family: var(--font-geist-mono), monospace; font-size: .75rem; }
 .flow-step p { margin: 0; color: #353530; font-size: 1rem; line-height: 1.7; word-break: keep-all; overflow-wrap: anywhere; }
+.flow-title { margin: 0 0 6px; color: var(--text); font-size: 1rem; font-weight: 650; line-height: 1.5; word-break: keep-all; overflow-wrap: anywhere; }
 .flow-guardrails { margin-top: 16px; padding: 16px 18px; background: var(--panel); }
 .flow-guardrails strong { display: block; margin-bottom: 9px; font-size: .875rem; }
 .flow-guardrails ul, .case-operations ul, .case-outcome ul { margin: 0; padding-left: 1rem; }

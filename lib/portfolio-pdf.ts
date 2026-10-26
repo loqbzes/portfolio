@@ -232,16 +232,19 @@ export async function createPortfolioPdf(data: Portfolio, fonts: Fonts) {
       ]);
       if (study.flow?.length) {
         // Long renewal studies split at a section boundary, not before a short appendix.
-        const flowHeight = 30 + study.flow.reduce((sum, text) => sum + measure(text, { indent: 34 }) + 8, 0);
+        const flowHeight = 30 + study.flow.reduce((sum, text, step) => sum + measure(text, { indent: 34 }) + (study.flowTitles?.[step] ? measure(study.flowTitles[step], { indent: 34, bold: true }) : 0) + 8, 0);
         const tailHeight = 110 + (study.operations ?? []).concat(remainingOutcomes)
           .reduce((sum, text) => sum + measure(text, { width: CONTENT - 28 }), 0);
         if (study.history?.length && y - flowHeight - tailHeight < BOTTOM) newPage(true);
         heading(study.flowLabel ?? '처리 구조', study.flow[0]);
         for (const [step, text] of study.flow.entries()) {
+          const title = study.flowTitles?.[step];
+          const titleHeight = title ? measure(title, { indent: 34, bold: true }) : 0;
           const guards = step === study.flow.length - 1 ? study.guardrails : undefined;
           const guardHeight = guards?.length ? 32 + guards.reduce((sum, guard) => sum + measure(guard, { size: 9.5, width: CONTENT - 62 }), 0) : 0;
-          ensure(measure(text, { indent: 34 }) + guardHeight + 8);
+          ensure(titleHeight + measure(text, { indent: 34 }) + guardHeight + 8);
           page.drawText(String(step + 1).padStart(2, '0'), { x: MARGIN, y: y - 10.5, size: 10.5, font: bold, color: MUTED });
+          if (title) paragraph(title, { indent: 34, bold: true });
           paragraph(text, { indent: 34 });
           if (guards?.length) {
             const top = y;
