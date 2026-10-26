@@ -1,6 +1,7 @@
 export type Project = {
   period: string;
   title: string;
+  category?: string;
   work: string[];
   result?: string;
   stack: string[];
@@ -11,9 +12,12 @@ export type Project = {
     problem: string[];
     ownership: string[];
     flow?: string[];
+    flowLabel?: string;
     guardrails?: string[];
     operations?: string[];
     outcomes: string[];
+    outcomesLabel?: string;
+    showHighlight?: boolean;
   };
 };
 
@@ -172,6 +176,38 @@ export const projects: Project[] = [
         '수임사의 손익 데이터를 제공하는 초기 서비스를 통해 고객 확보에 기여',
         '급여 입력 등 다양한 ERP 업무로 자동화 범위를 확대하며 회사의 서비스 확장에 기여',
         'SmartA 업데이트 종료에 맞춰 대상 업무 전체를 세무사랑 기반으로 이전',
+      ],
+    },
+  },
+  {
+    period: '2026.09 — 개발 중',
+    title: '겨울의 안쪽 / Inside Winter',
+    category: '개인 프로젝트',
+    work: [
+      '덱빌딩과 이야기 선택을 결합한 PC 게임의 기획·규칙·스토리 방향 결정 및 플레이테스트·검수',
+    ],
+    stack: ['Godot', 'GDScript', 'Python', 'JSON', 'PowerShell', 'Codex'],
+    caseStudy: {
+      showHighlight: false,
+      problemLabel: '프로젝트 목표',
+      problem: [
+        '덱빌딩과 이야기 선택을 결합한 1인용 미스터리 게임 개발',
+        '덱 구성·카드 사용·선택 이력에 따라 달라지는 이야기 분기와 다중 엔딩 구현',
+      ],
+      ownership: [
+        '게임 기획·규칙·스토리 방향을 결정하고, 코드 구현과 이미지·음악 제작에는 AI를 활용했습니다. 직접 플레이하며 기능과 연출을 검수하고, 발견한 문제와 개선 요구사항을 구체화해 반복적으로 수정했습니다.',
+      ],
+      flowLabel: '주요 구현',
+      flow: [
+        '장면·선택지·엔딩을 JSON으로 관리하고 화면과 게임 규칙을 분리',
+        '카드별 고유 ID와 위치를 추적해 카드 효과·이동·제거 처리',
+        '진행·책갈피 저장과 복원, 플레이어별 기록 분리 및 중복 실행 방지',
+        '이야기 경로 그래프·도감·엔딩 갤러리와 자산 비동기 로딩·캐시 구성',
+        '카드 규칙·저장 복원·분기 연결에 대한 회귀 테스트와 실행판 검증 도구 구성',
+      ],
+      outcomesLabel: '현재 상태',
+      outcomes: [
+        'Windows 플레이 가능 버전을 제작했으며, 상용화를 위한 행정 절차를 진행하고 있습니다.',
       ],
     },
   },

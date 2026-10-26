@@ -49,17 +49,17 @@ export default function Home() {
         <div className="section-title sticky-title">
           <span>02</span>
           <h2>프로젝트</h2>
-          <p>혜움랩스에서 수행한 주요 프로젝트의 개발 내용과 설계 선택, 결과를 정리했습니다.</p>
+          <p>혜움랩스에서 수행한 주요 프로젝트와 개인 프로젝트의 개발 내용, 담당 범위와 결과를 정리했습니다.</p>
         </div>
         <div className="project-list">
           {projects.map((project, index) => (
             <article className="project" key={project.title}>
               <div className="project-meta">
                 <span>{String(index + 1).padStart(2, '0')}</span>
-                <time>{project.period}</time>
+                <span>{project.category && <>{project.category} · </>}<time>{project.period}</time></span>
               </div>
               <h3>{project.title}</h3>
-              {project.caseStudy && (
+              {project.caseStudy && project.caseStudy.showHighlight !== false && project.caseStudy.outcomes.length > 0 && (
                 <div className="project-highlight">
                   <span>주요 결과</span>
                   <p>{project.caseStudy.outcomes[0]}</p>
@@ -91,7 +91,7 @@ export default function Home() {
                   </div>
                   {project.caseStudy.flow && (
                     <section>
-                      <h4>처리 구조</h4>
+                      <h4>{project.caseStudy.flowLabel ?? '처리 구조'}</h4>
                       <div className="flow-list">
                         {project.caseStudy.flow.map((item, index) => (
                           <div className="flow-step" key={item}>
@@ -116,10 +116,10 @@ export default function Home() {
                       <ul>{project.caseStudy.operations.map((item) => <li key={item}>{item}</li>)}</ul>
                     </section>
                   )}
-                  {project.caseStudy.outcomes.length > 1 && (
+                  {project.caseStudy.outcomes.length > (project.caseStudy.showHighlight === false ? 0 : 1) && (
                     <section className="case-outcome">
-                      <h4>도입 결과</h4>
-                      <ul>{project.caseStudy.outcomes.slice(1).map((item) => <li key={item}>{item}</li>)}</ul>
+                      <h4>{project.caseStudy.outcomesLabel ?? '도입 결과'}</h4>
+                      <ul>{project.caseStudy.outcomes.slice(project.caseStudy.showHighlight === false ? 0 : 1).map((item) => <li key={item}>{item}</li>)}</ul>
                     </section>
                   )}
                 </div>

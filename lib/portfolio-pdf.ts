@@ -215,12 +215,13 @@ export async function createPortfolioPdf(data: Portfolio, fonts: Fonts) {
     newPage();
     page.drawRectangle({ x: MARGIN, y: y - 22, width: 85, height: 23, color: INK });
     page.drawText(`PROJECT ${String(index + 1).padStart(2, '0')}`, { x: MARGIN + 10, y: y - 14, font: bold, size: 9, color: ACCENT });
-    page.drawText(clean(project.period), { x: MARGIN + 100, y: y - 14, font: regular, size: 9, color: MUTED });
+    page.drawText(clean(`${project.category ? project.category + ' · ' : ''}${project.period}`), { x: MARGIN + 100, y: y - 14, font: regular, size: 9, color: MUTED });
     y -= 38;
     paragraph(project.title, { size: 23, bold: true, gap: 12 });
     const study = project.caseStudy;
     if (study) {
-      if (study.outcomes.length) highlight(study.outcomes[0]);
+      const remainingOutcomes = study.outcomes.slice(study.showHighlight === false ? 0 : 1);
+      if (study.showHighlight !== false && study.outcomes.length) highlight(study.outcomes[0]);
       if (study.background) {
         cards([{ label: '프로젝트 범위', items: [study.background] }], PANEL);
       }
@@ -232,10 +233,10 @@ export async function createPortfolioPdf(data: Portfolio, fonts: Fonts) {
       if (study.flow?.length) {
         // Long renewal studies split at a section boundary, not before a short appendix.
         const flowHeight = 30 + study.flow.reduce((sum, text) => sum + measure(text, { indent: 34 }) + 8, 0);
-        const tailHeight = 110 + (study.operations ?? []).concat(study.outcomes.slice(1))
+        const tailHeight = 110 + (study.operations ?? []).concat(remainingOutcomes)
           .reduce((sum, text) => sum + measure(text, { width: CONTENT - 28 }), 0);
         if (study.history?.length && y - flowHeight - tailHeight < BOTTOM) newPage(true);
-        heading('처리 구조', study.flow[0]);
+        heading(study.flowLabel ?? '처리 구조', study.flow[0]);
         for (const [step, text] of study.flow.entries()) {
           const guards = step === study.flow.length - 1 ? study.guardrails : undefined;
           const guardHeight = guards?.length ? 32 + guards.reduce((sum, guard) => sum + measure(guard, { size: 9.5, width: CONTENT - 62 }), 0) : 0;
@@ -255,7 +256,7 @@ export async function createPortfolioPdf(data: Portfolio, fonts: Fonts) {
         }
       }
       if (study.operations) cards([{ label: '운영 및 모니터링', items: study.operations }], PANEL);
-      if (study.outcomes.length > 1) cards([{ label: '도입 결과', items: study.outcomes.slice(1) }], PANEL);
+      if (remainingOutcomes.length) cards([{ label: study.outcomesLabel ?? '도입 결과', items: remainingOutcomes }], PANEL);
     } else {
       section('수행 업무', project.work);
       if (project.result) highlight(project.result);

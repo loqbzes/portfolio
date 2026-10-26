@@ -23,6 +23,8 @@ for category, items in data['skills']:
     expected.extend([category, items])
 for project in data['projects']:
     expected.extend([project['title'], project['period']])
+    if project.get('category'):
+        expected.append(project['category'])
     expected.extend(project['stack'])
     study = project.get('caseStudy')
     if study:
@@ -39,6 +41,11 @@ missing = [value for value in expected if normalize(value) not in text]
 assert not missing, f'Missing PDF content: {missing}'
 assert '\ufffd' not in text, 'Replacement glyphs in extracted text'
 assert len(reader.pages) >= 2
+for project in data['projects']:
+    if project.get('caseStudy', {}).get('showHighlight') is False:
+        project_pages = [page for page in reader.pages if normalize(project['title']) in normalize(page.extract_text())]
+        assert project_pages, 'Missing project page'
+        assert all('주요 결과' not in page.extract_text() for page in project_pages), 'Unexpected project highlight'
 
 for page in reader.pages:
     assert abs(float(page.mediabox.width) - 595.28) < 1
