@@ -24,6 +24,33 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    period: '2026.06 — 2026.07',
+    title: 'Slack·카카오톡 상담 서비스 DB 설계 및 마이그레이션',
+    work: [
+      'Redis 기반 채팅 연동 정보를 PostgreSQL로 이전하고 채팅 메시지 적재·조회 기능 개발',
+    ],
+    stack: ['Python', 'PostgreSQL', 'Redis', 'SQLAlchemy'],
+    caseStudy: {
+      problemLabel: '개선 목표',
+      problem: [
+        'Redis에 저장하던 Slack·카카오톡 채팅 연동 정보를 관계형 데이터 모델로 재설계',
+        '채팅 메시지를 저장하고 사용자별 연동 정보와 메시지를 조회할 수 있는 구조 마련',
+      ],
+      ownership: [
+        '채팅 연동 정보의 DB 설계와 기존 Redis 데이터 마이그레이션, 채팅 메시지 적재 및 사용자별 조회 기능 개발을 담당했습니다.',
+      ],
+      flow: [
+        'Redis에 저장된 채팅 연동 정보를 PostgreSQL의 관계형 데이터 모델로 재설계',
+        '기존 Redis 데이터를 PostgreSQL로 마이그레이션한 뒤 상담 서비스를 재개',
+        '채팅 메시지를 DB에 적재하도록 구현',
+        'Slack·카카오톡 사용자별로 연동 정보와 메시지 데이터를 쿼리할 수 있도록 구성',
+      ],
+      outcomes: [
+        '채팅 연동 정보를 PostgreSQL로 이전하고 Slack·카카오톡 사용자별 연동 정보·메시지 조회 기능 구현',
+      ],
+    },
+  },
+  {
     period: '2026.03 — 2026.06',
     title: '내부 CS·운영 지원 AI 에이전트 개발',
     work: [
@@ -222,7 +249,7 @@ export const projects: Project[] = [
 ];
 
 export const skills = [
-  ['Backend', 'Python, Django, Flask, ORM, REST API'],
+  ['Backend', 'Python, Django, Flask, SQLAlchemy, ORM, REST API'],
   ['Data', 'PostgreSQL, RDS, DynamoDB, S3, Data Modeling'],
   ['Async / Messaging', 'Celery, Redis, SQS'],
   ['AWS', 'ECS, EC2, Lambda, CloudWatch'],
@@ -252,7 +279,7 @@ export const profile = {
 export const careerHighlights = [
   'Django·Flask 기반 웹 백엔드, 데이터 모델과 API 개발',
   'Celery·Redis 기반 비동기 작업 시스템 개발 및 장기 운영',
-  'PostgreSQL·DynamoDB·RDS를 사용한 수집 데이터 저장 구조 설계·변경',
+  '수집·상담 데이터 모델링, 저장 구조 개선 및 Redis→PostgreSQL 마이그레이션',
   'AWS Lambda 서버리스 애플리케이션과 외부 서비스 연동 기능 개발',
   'ECS·Docker·Terraform을 사용한 Linux 기반 스크래핑 서비스 리뉴얼',
   'CloudWatch·Slack을 사용한 실행 상태, 로그, 오류 모니터링 구성',
